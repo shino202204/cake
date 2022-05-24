@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   namespace :admin do
-    # get 'homes/top'
+    get 'homes/top'
+    # onlyオプション：生成するルーティングを限定。不要なルーティングを実行しないようにする。
+    resources :admin, only:[:index, :show, :edit, :create, :destroy, :update]
+    root "homes#top"
     # root to: 'homes#top'
   end
   # devise_for :admins
