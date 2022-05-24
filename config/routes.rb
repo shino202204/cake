@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     # onlyオプション：生成するルーティングを限定。不要なルーティングを実行しないようにする。
     resources :admin, only:[:index, :show, :edit, :create, :destroy, :update]
     root "homes#top"
+    get '/' => 'homes#top'
     # root to: 'homes#top'
   end
   # devise_for :admins
