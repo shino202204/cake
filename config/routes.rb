@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   namespace :admin do
+    get 'genres/index'
+    get 'genres/edit'
+  end
+  namespace :admin do
     get 'items/index'
     get 'items/new'
     get 'items/show'
@@ -9,6 +13,7 @@ Rails.application.routes.draw do
     get 'homes/top'
     # onlyオプション：生成するルーティングを限定。不要なルーティングを実行しないようにする。
     resources :admin, only:[:index, :show, :edit, :create, :destroy, :update]
+    resources :genre, only:[:index, :show, :edit, :create, :destroy, :update]
     root "homes#top"
     get '/' => 'homes#top'
     # root to: 'homes#top'
