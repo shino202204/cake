@@ -19,6 +19,9 @@
      <li>
       <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
      </li>
+     <li>
+      <%= link_to "商品一覧", admin_items_index_path %>
+     </li>
     <% else %>
      <!--<li>-->
      <!-- <= link_to "新規登録", new_customer_registration_path %>-->
