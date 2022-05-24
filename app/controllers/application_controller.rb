@@ -8,4 +8,14 @@ class ApplicationController < ActionController::Base
       users_home_path
     end
   end
+
+  def after_sign_out_path_for(resource)
+    # case resource
+    # when Admin
+      new_admin_session_path
+    # when User
+    #   users_home_path
+    # end
+  end
+
 end
