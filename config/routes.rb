@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     post 'genres/index' => 'genres#create'
     get 'genres/edit'
     get 'genres/:id/edit' => 'genres#edit'#, as: 'edit_genre'
+    patch 'genres/:id/edit' => 'genres#update'
     get 'items/index'
     get 'items/new'
     get 'items/show'
