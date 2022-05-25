@@ -2,7 +2,7 @@
 <p>Find me in app/views/admin/genres/index.html.erb</p>
 
 <h2>ジャンル一覧・追加</h2>
-<%= form_with model: @genre, method: :post do |f| %>
+<%= form_with model: @genre, url: admin_genres_index_path, method: :post do |f| %>
     <div>
       <label>ジャンル名</label>
       <%= f.text_field :name %>

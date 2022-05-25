@@ -1,13 +1,17 @@
 class Admin::GenresController < ApplicationController
   def index
+    @genre = Genre.new
     @genres = Genre.all
   end
 
   def create
-    @genre = Genre.new(genre_params)
-    if @genre.save
+    genre = Genre.new(genre_params)
+    if genre.save
       flash[:notice] = "Genre was successfully created."
-      redirect_to :index
+      redirect_to admin_genres_index_path
+    else
+      # flash[:notice] = "NG"
+      render :index
     end
   end
 
