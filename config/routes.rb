@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     get 'genres/:id/edit' => 'genres#edit'#, as: 'edit_genre'
     patch 'genres/:id/edit' => 'genres#update'
     get 'items/index'
-    get 'items/new'
+    get 'item/new' => 'items#new'
     get 'items/show'
     get 'items/edit'
     # post 'genres' => 'genres#create', as: 'genre_create'
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     # onlyオプション：生成するルーティングを限定。不要なルーティングを実行しないようにする。
     resources :admin, only:[:index, :show, :edit, :create, :destroy, :update]
     resources :genre, only:[:index, :show, :edit, :create, :destroy, :update]
+    resources :item, only:[:index, :show, :edit, :create, :destroy, :update, :new]
     get '/' => 'homes#top'
     root to: 'homes#top'
   end
