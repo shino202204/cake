@@ -7,6 +7,13 @@ class Admin::ItemsController < ApplicationController
   end
 
   def create
+    @item = Item.new(item_params)
+    if @item.save
+      flash[:notice] = "Item was successfully created."
+      redirect_to "/admin/item/new"
+    else
+      render :new
+    end
   end
 
   def show
