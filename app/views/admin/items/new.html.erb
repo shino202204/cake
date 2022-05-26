@@ -2,7 +2,7 @@
 <p>Find me in app/views/admin/items/new.html.erb</p>
 
 <h2>商品新規登録</h2>
-    <%= form_with model: @item, url: new_admin_item_path, method: :post do |f| %>
+    <%= form_with model: @item, url: admin_item_index_path, method: :post do |f| %>
     <div>
       <label>商品画像</label>
       <%= f.file_field :image, accept: "image/*" %>
@@ -17,18 +17,18 @@
     </div>
     <div>
       <label>ジャンル</label>
-      <!--<= f.text_field :title, class: "form-control" %>-->
+      <%= f.select :genre, [['ケーキ',1], ['プリン',2], ['焼き菓子',3], ['キャンディ',4]], { include_blank: '--選択してください--'} %>
     </div>
     <div>
       <label>税抜価格</label>
-      <!--<= f.text_field :title, class: "form-control" %>-->
+      <%= f.text_field :price %>
     </div>
     <div>
       <label>販売ステータス</label>
-      <!--<= f.text_field :title, class: "form-control" %>-->
+      <%= f.radio_button :is_active,0,checked: true %>販売中<%= f.radio_button :is_active, 1 %>販売停止中
     </div>
     <iv>
     <div>
-      <!--<= f.submit '新規登録' %>-->
+      <%= f.submit '新規登録' %>
     </div>
 <% end %>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     patch 'genres/:id/edit' => 'genres#update'
     get 'items/index'
     get 'item/new' => 'items#new'
+    post 'item/new' => 'items#create'
     get 'items/show'
     get 'items/edit'
     # post 'genres' => 'genres#create', as: 'genre_create'
