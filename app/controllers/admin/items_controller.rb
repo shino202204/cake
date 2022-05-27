@@ -12,7 +12,7 @@ class Admin::ItemsController < ApplicationController
       flash[:notice] = "Item was successfully created."
       redirect_to "/admin/item/new"
     else
-      render :new
+      render :show
     end
   end
 
