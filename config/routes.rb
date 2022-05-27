@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get 'items/index'
     get 'item/new' => 'items#new'
     post 'item/new' => 'items#create'
-    get 'items/show'
+    get 'item/:id' => 'items#show', as: 'item'
     get 'items/edit'
     # post 'genres' => 'genres#create', as: 'genre_create'
     get 'homes/top'

@@ -1,5 +1,6 @@
 class Admin::ItemsController < ApplicationController
   def index
+    @items = Item.all
   end
 
   def new
@@ -12,11 +13,12 @@ class Admin::ItemsController < ApplicationController
       flash[:notice] = "Item was successfully created."
       redirect_to "/admin/item/new"
     else
-      render :show
+      render :index
     end
   end
 
   def show
+    @item = Item.find(params[:id])
   end
 
   def edit

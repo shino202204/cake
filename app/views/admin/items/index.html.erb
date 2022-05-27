@@ -1,5 +1,27 @@
 <h1>Admin::Items#index</h1>
 <p>Find me in app/views/admin/items/index.html.erb</p>
-管理者の商品一覧画面
 
 <%= link_to "商品新規登録ボタン", new_admin_item_path %>
+
+<h1>商品一覧</h1>
+<table>
+  <thead>
+    <tr>
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>税抜価格</th>
+      <th>ジャンル</th>
+      <th>ステータス</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+  <% @items.each do |item| %>
+  <tbody>
+    <td><%= item.id %></td>
+    <td><%= link_to item.name, admin_item_path(item.id) %></td>
+    <td><%= item.price %></td>
+    <td><%= item.genre.name %></td>
+    <td><%= item.is_active %></td>
+  </tbody>
+  <% end %>
+</table>
