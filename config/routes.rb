@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     post 'item/new' => 'items#create'
     get 'item/:id' => 'items#show', as: 'item'
     get 'items/edit/:id' => 'items#edit', as: 'edit'
+    patch 'items/edit/:id' => 'items#update'
     # post 'genres' => 'genres#create', as: 'genre_create'
     get 'homes/top'
     # onlyオプション：生成するルーティングを限定。不要なルーティングを実行しないようにする。
