@@ -13,7 +13,7 @@
     <%= form_with model: @item, url: "/admin/item/new", method: :post do |f| %>
     <div>
       <label>商品画像</label>
-      <%= f.file_field :image_id, accept: "image/*" %>
+      <%= f.file_field :image, accept: "image/*" %>
     </div>
     <div>
       <label>商品名</label>
@@ -33,7 +33,7 @@
     </div>
     <div>
       <label>販売ステータス</label>
-      <%= f.radio_button :is_active,0,checked: true %>販売中<%= f.radio_button :is_active, 1 %>販売停止中
+      <%= f.radio_button :is_active,true,checked: true %>販売中<%= f.radio_button :is_active, false %>販売停止中
     </div>
     <iv>
     <div>
