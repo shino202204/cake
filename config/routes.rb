@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   namespace :admin do
+    # 管理者トップページ(注文履歴一覧画面)
+    root to: 'homes#top'
+
     get 'genres/index'
     post 'genres/index' => 'genres#create'
     get 'genres/edit'
@@ -14,11 +17,9 @@ Rails.application.routes.draw do
     # post 'genres' => 'genres#create', as: 'genre_create'
     get 'homes/top'
     # onlyオプション：生成するルーティングを限定。不要なルーティングを実行しないようにする。
-    resources :admin, only:[:index, :show, :edit, :create, :destroy, :update]
+    # resources :admin, only:[:index, :show, :edit, :create, :destroy, :update]
     resources :genre, only:[:index, :show, :edit, :create, :destroy, :update]
     resources :item, only:[:index, :show, :edit, :create, :destroy, :update, :new]
-    get '/' => 'homes#top'
-    root to: 'homes#top'
   end
   # devise_for :admins
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -29,7 +30,6 @@ Rails.application.routes.draw do
   # skipオプション：不要なルーティングであるパスワード変更・管理者側の登録を削除
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
-    # genres: "admin/genres"
   }
 
 end
