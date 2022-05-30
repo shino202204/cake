@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :items, only:[:index, :show, :edit, :create, :destroy, :update, :new]
   end
 
+  # root to: '/' => 'public/homes/top'
+
   # 管理者用
   # URL/admin/sign_in...
   # devise_forの後に生成したコントローラーがどこに存在するかを記述

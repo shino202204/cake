@@ -4,6 +4,17 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
+   # サインイン後にどこに遷移するかを設定しているメソッド(Deviseが用意している)
+  def after_sign_in_path_for(resource)
+    "/"
+  end
+
+  # ユーザー登録（sign_up)の際に、keys: のデータ操作を許可
+  # ストロングパラメータと同様の機能
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name])
+  end
+
   # GET /resource/sign_up
   # def new
   #   super
