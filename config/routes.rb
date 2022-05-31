@@ -4,13 +4,15 @@ Rails.application.routes.draw do
     root to: 'homes#top'
 
     # onlyオプション：生成するルーティングを限定。不要なルーティングを実行しないようにする。
-    resources :genres, only:[:index, :show, :edit, :create, :destroy, :update]
-    resources :items, only:[:index, :show, :edit, :create, :destroy, :update, :new]
+    resources :genres, only:[:index, :edit, :create, :update]
+    resources :items, only:[:index, :show, :edit, :create, :update, :new]
+    resources :customers, only:[:index, :show, :edit, :update]
   end
 
   # get '/customers' => "homes#top"
   # resources :customers, only:[:index, :show, :edit, :create, :destroy, :update, :new]
   root to: 'public/homes#top'
+
 
   # 管理者用
   # URL/admin/sign_in...
