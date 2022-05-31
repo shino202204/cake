@@ -8,6 +8,10 @@ Rails.application.routes.draw do
     resources :items, only:[:index, :show, :edit, :create, :destroy, :update, :new]
   end
 
+  # get '/customers' => "homes#top"
+  # resources :customers, only:[:index, :show, :edit, :create, :destroy, :update, :new]
+  root to: 'public/homes#top'
+
   # 管理者用
   # URL/admin/sign_in...
   # devise_forの後に生成したコントローラーがどこに存在するかを記述

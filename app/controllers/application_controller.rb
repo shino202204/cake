@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
     case resource
     when Admin
       admin_root_path
-    when User
-      users_home_path
+    when Customer
+      root_path
     end
   end
 
