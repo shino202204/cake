@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   # get '/customers' => "homes#top"
   # resources :customers, only:[:index, :show, :edit, :create, :destroy, :update, :new]
   root to: 'public/homes#top'
+  resources :homes, only:[:top, :about]
 
 
   # 管理者用
