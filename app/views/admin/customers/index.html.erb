@@ -12,9 +12,13 @@
   <% @customers.each do |customer| %>
   <tbody>
     <td><%= customer.id %></td>
-    <td><%= customer.last_name+customer.first_name%></td>
+    <td><%= link_to customer.last_name+customer.first_name, admin_customer_path(customer.id)%></td>
     <td><%= customer.email %></td>
-    <td><%= customer.is_deleted %></td>
+    <% if customer.is_deleted == false %>
+      <td>有効</td>
+    <% else %>
+      <td>退会</td>
+    <% end %>
   </tbody>
   <% end %>
 </table>

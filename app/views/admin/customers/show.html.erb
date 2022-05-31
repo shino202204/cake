@@ -1,0 +1,30 @@
+<h2><%= @customer.last_name+@customer.first_name %>さんの会員詳細</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>会員ID</th>
+      <th>氏名</th>
+      <th>フリガナ</th>
+      <th>郵便番号</th>
+      <th>住所</th>
+      <th>電話番号</th>
+      <th>メールアドレス</th>
+      <th>会員ステータス</th>
+      <th rowspan="8"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <td><%= @customer.id %></td>
+    <td><%= @customer.last_name+@customer.first_name %></td>
+    <td><%= @customer.last_name_kana+@customer.first_name_kana %></td>
+    <td><%= @customer.postal_code %></td>
+    <td><%= @customer.address %></td>
+    <td><%= @customer.telephone_number %></td>
+    <td><%= @customer.email %></td>
+    <% if @customer.is_deleted == false %>
+      <td>有効</td>
+    <% else %>
+      <td>退会</td>
+    <% end %>
+  </tbody>
+</table>
