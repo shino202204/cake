@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'customers/show'
+    get 'customers/edit'
+    get 'customers/unsubscribe'
+  end
   namespace :admin do
     # 管理者トップページ(注文履歴一覧画面)
     root to: 'homes#top'
@@ -13,6 +18,7 @@ Rails.application.routes.draw do
   # resources :customers, only:[:index, :show, :edit, :create, :destroy, :update, :new]
   root to: 'public/homes#top'
   get '/about' => 'public/homes#about'
+  get '/customers/my_page' => 'public/customers#show'
   # resources :homes, only:[:top, :about]
 
 
