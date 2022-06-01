@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'items/' => 'public/items#index'
+  get 'items/:id' => 'public/items#show'
+
   namespace :public do
     get 'customers/show'
     get 'customers/edit'
