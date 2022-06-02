@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'cart_items/index'
+  end
   get 'items/' => 'public/items#index'
   get 'items/:id' => 'public/items#show', as: 'item'
 

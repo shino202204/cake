@@ -5,6 +5,7 @@
 <br>
 <%= form_with model: @item, url: item_path(@item.id), method: :post do |f| %>
 <%= @item.name %>
+<%= f.hidden_field :item_id, :value => @item.id %>
 <br>
 <%= @item.introduction %>
 <br>
