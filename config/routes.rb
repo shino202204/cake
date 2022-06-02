@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'items/' => 'public/items#index'
-  get 'items/:id' => 'public/items#show'
+  get 'items/:id' => 'public/items#show', as: 'item'
 
   namespace :public do
     get 'customers/show'
