@@ -2,3 +2,31 @@
 <p>Find me in app/views/public/cart_items/index.html.erb</p>
 
 <h2>ショッピングカート</h2>
+<div>カートを空にする</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価(税込)</cart_items_path>
+      <th>数量</th>
+      <th>小計</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+  <% @cart_items.each do |cart_item| %>
+  <tbody>
+    <td><%= cart_item.item.name %></td>
+    <td><%= cart_item.item.price %></td>
+    <td><%= cart_item.amount %></td>
+    <td><%= cart_item.item.price * cart_item.amount%></td>
+    <td>削除する</td>
+  </tbody>
+  <% end %>
+</table>
+
+<div>合計金額</div>
+<div>買い物を続ける</div>
+<div>情報入力に進む</div>
+
+
