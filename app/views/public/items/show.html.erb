@@ -3,15 +3,16 @@
 
 <%= image_tag @item.get_image(100,100) %>
 <br>
-<%= form_with model: @item, url: cart_items_path, method: :post do |f| %>
-<%= @item.name %>
-<%= f.hidden_field :item_id, :value => @item.id %>
-<br>
-<%= @item.introduction %>
-<br>
-<%= @item.price %>(税抜)
-<br>
-<!--<= f.select :amount, [['1',1], ['2',2], ['3',3], ['4',4]], { include_blank: '--個数選択--'} %>-->
-<%= f.select :amount, *[1..10], { include_blank: '--個数選択--'} %>
-<%= f.submit 'カートに入れる' %>
+<%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
+  <%= @item.name %>
+  <br>
+  <%= @item.introduction %>
+  <br>
+  <%= @item.price %>(税抜)
+  <br>
+  <%= f.hidden_field :item_id, :value => @item.id %>
+  <%= f.hidden_field :customer_id, :value => current_customer.id %>
+  <!--<= f.select :amount, [['1',1], ['2',2], ['3',3], ['4',4]], { include_blank: '--個数選択--'} %>-->
+  <%= f.select :amount, *[1..10], { include_blank: '--個数選択--'} %>
+  <%= f.submit 'カートに入れる' %>
 <% end %>
