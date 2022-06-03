@@ -1,23 +1,21 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'cart_items/index'
-  end
   get 'items/' => 'public/items#index'
   get 'items/:id' => 'public/items#show', as: 'item'
 
-  namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/unsubscribe'
-  end
   namespace :admin do
     # 管理者トップページ(注文履歴一覧画面)
     root to: 'homes#top'
-
     # onlyオプション：生成するルーティングを限定。不要なルーティングを実行しないようにする。
     resources :genres, only:[:index, :edit, :create, :update]
     resources :items, only:[:index, :show, :edit, :create, :update, :new]
     resources :customers, only:[:index, :show, :edit, :update]
+  end
+
+  namespace :public do
+    get 'cart_items/index'
+    get 'customers/show'
+    get 'customers/edit'
+    get 'customers/unsubscribe'
   end
 
   # get '/customers' => "homes#top"
@@ -28,6 +26,8 @@ Rails.application.routes.draw do
   get '/customers/edit' => 'public/customers#edit'
   patch '/customers' => 'public/customers#update'
   get '/customers/unsubscribe' => 'public/customers#unsubscribe'
+  get '/cart_items' => 'public/cart_items#index'
+  post '/cart_items' => 'public/cart_items#create'
   # resources :homes, only:[:top, :about]
   # resources :customers, only:[:edit, :unsubscribe]
 

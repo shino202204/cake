@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   has_one_attached :image
   belongs_to :genre
+  has_many :cart_items
   # 画像添付がない場合はサンプル画像を表示
   def get_image(width, height)
     # 「unless」：もし〜でなければ → もし画像が添付されていなければ

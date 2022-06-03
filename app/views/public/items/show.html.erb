@@ -3,7 +3,7 @@
 
 <%= image_tag @item.get_image(100,100) %>
 <br>
-<%= form_with model: @item, url: item_path(@item.id), method: :post do |f| %>
+<%= form_with model: @item, url: cart_items_path, method: :post do |f| %>
 <%= @item.name %>
 <%= f.hidden_field :item_id, :value => @item.id %>
 <br>
