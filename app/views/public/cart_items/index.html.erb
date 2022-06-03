@@ -17,16 +17,18 @@
   <% @cart_items.each do |cart_item| %>
   <tbody>
     <td><%= cart_item.item.name %></td>
-    <td><%= cart_item.item.price %></td>
+    <td><%= cart_item.item.with_tax_price %></td>
     <td><%= cart_item.amount %></td>
-    <td><%= cart_item.item.price * cart_item.amount%></td>
+    <td><%= cart_item.subtotal %></td>
     <td>削除する</td>
+    <% @total_payment += cart_item.subtotal %>
   </tbody>
   <% end %>
 </table>
 
 <div>合計金額</div>
-<div>買い物を続ける</div>
+<%= @total_payment %>
+<div><%= link_to '買い物を続ける', root_path %></div>
 <div>情報入力に進む</div>
 
 
