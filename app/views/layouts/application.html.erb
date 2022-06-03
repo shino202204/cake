@@ -34,6 +34,7 @@
       <%= link_to "会員一覧", admin_customers_path %>
      </li>
     <% elsif customer_signed_in? %>
+     <div>ようこそ <%= current_customer.last_name %> さん</div>
      <li>
       <%= link_to "マイページ", customers_my_page_path %>
      </li>
