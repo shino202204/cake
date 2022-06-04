@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get '/customers/unsubscribe' => 'public/customers#unsubscribe'
   get '/cart_items' => 'public/cart_items#index'
   post '/cart_items' => 'public/cart_items#create'
+  delete '/cart_items/destroy_all' => 'public/cart_items#destroy_all'
   # resources :homes, only:[:top, :about]
   # resources :customers, only:[:edit, :unsubscribe]
 

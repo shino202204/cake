@@ -14,6 +14,15 @@ class Public::CartItemsController < ApplicationController
     end
   end
 
+  def destroy_all
+    if current_customer.cart_items.destroy_all
+      flash[:notice] = "CartItem was successfully destroyed."
+      redirect_to cart_items_path
+    else
+      render :index
+    end
+  end
+
   private
   def cart_item_params
     params.require(:cart_item).permit(:item_id, :customer_id, :amount)
