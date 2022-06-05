@@ -26,9 +26,12 @@ class Public::CartItemsController < ApplicationController
     end
   end
 
-  # def destroy
-
-  # end
+  def destroy
+    puts "destroyメソッドに到達しました"
+    @cart_items = CartItem.all
+    @total_payment = 0
+    render :index
+  end
 
   private
   def cart_item_params

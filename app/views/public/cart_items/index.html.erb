@@ -27,7 +27,7 @@
     <td><%= cart_item.amount %></td>
     <td><%= cart_item.subtotal %></td>
     <td>
-      <%= button_to "削除する", cart_items_path, method: :delete %>
+      <%= button_to "削除する", cart_items_path(cart_item.id), method: :delete %>
     </td>
     <% @total_payment += cart_item.subtotal %>
   </tbody>

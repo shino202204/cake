@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   namespace :public do
-    get 'cart_items/index'
+    # get 'cart_items/index'
     get 'customers/show'
     get 'customers/edit'
     get 'customers/unsubscribe'
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   patch '/customers' => 'public/customers#update'
   get '/customers/unsubscribe' => 'public/customers#unsubscribe'
   get '/cart_items' => 'public/cart_items#index'
-  # delete '/cart_items/:id' => 'public/cart_items#destroy'
+  delete '/cart_items/:id' => 'public/cart_items#destroy'
   post '/cart_items' => 'public/cart_items#create'
   delete '/cart_items/destroy_all' => 'public/cart_items#destroy_all'
   # resources :homes, only:[:top, :about]
