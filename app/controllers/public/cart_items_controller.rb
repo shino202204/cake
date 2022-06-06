@@ -5,23 +5,25 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
-    # @cart_item = CartItem.new(cart_item_params)
-    # if current_customer.cartitems.find_by(item_id: cart_item_params[:item_id])
-    @cart_item = CartItem.new(cart_item_params)
-    if @cart_item.save
-      flash[:notice] = "CartItem was successfully created."
-      redirect_to cart_items_path
-    else
-      render :index
-    end
-
     # ログインユーザのカート情報
-    cart_items = current_customer.cart_items.find_by(item_id: cart_item_params[:item_id])
+    cart_item = current_customer.cart_items.find_by(item_id: cart_item_params[:item_id])
     # 追加商品がカート内に存在する場合
-    if cart_items != nil
+    if cart_item != nil
       # 指定した数量を追加する
+      cart_item.amount += params[:cart_item][:amount].to_i
+      cart_item.save
+      flash[:notice] = "CartItem was successfully updated."
+      redirect_to cart_items_path
+    # 存在しなかった場合
     else
       # 新規作成する
+      @cart_item = CartItem.new(cart_item_params)
+      if @cart_item.save
+        flash[:notice] = "CartItem was successfully created."
+        redirect_to cart_items_path
+      else
+        render :index
+      end
     end
   end
 
