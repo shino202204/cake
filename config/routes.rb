@@ -29,9 +29,13 @@ Rails.application.routes.draw do
   get '/customers/unsubscribe' => 'public/customers#unsubscribe'
 
   get '/cart_items' => 'public/cart_items#index'
-  # delete '/cart_items/:id' => 'public/cart_items#destroy'
   post '/cart_items' => 'public/cart_items#create'
+
+  # 以下の削除ルーティング：「:id」を先に記述すると
+  # 「destroy_all」がidと認識されてしまいdestroyアクションに行ってしまう。
+  # 先に「destroy_all」を記述すればdestroy_allアクションに行ってくれる。
   delete '/cart_items/destroy_all' => 'public/cart_items#destroy_all'
+  delete '/cart_items/:id' => 'public/cart_items#destroy'
   # resources :homes, only:[:top, :about]
   # resources :customers, only:[:edit, :unsubscribe]
 

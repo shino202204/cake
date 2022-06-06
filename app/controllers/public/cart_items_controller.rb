@@ -38,16 +38,24 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy
-    @cart_item = CartItem.new(cart_item_params)
-    if @cart_item.item_id == '0'
-      puts "カートを空にします"
-      render :index
-    else
+    # @cart_item = CartItem.new(cart_item_params)
+    # if @cart_item.item_id == '0'
       puts "destroyメソッドに到達しました"
+      # cart_item = current_customer.cart_items.find_by(item_id: params[:id])
+      puts "カートidは#{params[:id]}です"
+      cart_item = CartItem.find(params[:id])
+      cart_item.destroy
+      flash[:notice] = "CartItem was successfully destroyed."
+
       @cart_items = CartItem.all
       @total_payment = 0
-      render :index
-    end
+      redirect_to cart_items_path
+      # puts "カートを空にします"
+    # else
+      # @cart_items = CartItem.all
+      # @total_payment = 0
+      # render :index
+    # end
   end
 
   private
