@@ -11,7 +11,7 @@
   <%= @item.price %>(税抜)
   <br>
   <%= f.hidden_field :item_id, :value => @item.id %>
-  < f.hidden_field :customer_id, :value => current_customer.id %>
+  <%= f.hidden_field :customer_id, :value => current_customer.id %>
   <!--<= f.select :amount, [['1',1], ['2',2], ['3',3], ['4',4]], { include_blank: '--個数選択--'} %>-->
   <%= f.select :amount, *[1..10], { include_blank: '--個数選択--'} %>
   <%= f.submit 'カートに入れる' %>

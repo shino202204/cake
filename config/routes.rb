@@ -22,12 +22,14 @@ Rails.application.routes.draw do
   # resources :customers, only:[:index, :show, :edit, :create, :destroy, :update, :new]
   root to: 'public/homes#top'
   get '/about' => 'public/homes#about'
+
   get '/customers/my_page' => 'public/customers#show'
   get '/customers/edit' => 'public/customers#edit'
   patch '/customers' => 'public/customers#update'
   get '/customers/unsubscribe' => 'public/customers#unsubscribe'
+
   get '/cart_items' => 'public/cart_items#index'
-  delete '/cart_items/:id' => 'public/cart_items#destroy'
+  # delete '/cart_items/:id' => 'public/cart_items#destroy'
   post '/cart_items' => 'public/cart_items#create'
   delete '/cart_items/destroy_all' => 'public/cart_items#destroy_all'
   # resources :homes, only:[:top, :about]

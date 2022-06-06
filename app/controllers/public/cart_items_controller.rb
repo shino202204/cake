@@ -14,6 +14,15 @@ class Public::CartItemsController < ApplicationController
     else
       render :index
     end
+
+    # ログインユーザのカート情報
+    cart_items = current_customer.cart_items.find_by(item_id: cart_item_params[:item_id])
+    # 追加商品がカート内に存在する場合
+    if cart_items != nil
+      # 指定した数量を追加する
+    else
+      # 新規作成する
+    end
   end
 
   def destroy_all
@@ -27,10 +36,16 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy
-    puts "destroyメソッドに到達しました"
-    @cart_items = CartItem.all
-    @total_payment = 0
-    render :index
+    @cart_item = CartItem.new(cart_item_params)
+    if @cart_item.item_id == '0'
+      puts "カートを空にします"
+      render :index
+    else
+      puts "destroyメソッドに到達しました"
+      @cart_items = CartItem.all
+      @total_payment = 0
+      render :index
+    end
   end
 
   private
