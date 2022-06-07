@@ -20,6 +20,18 @@ class Public::AddressesController < ApplicationController
     puts "editアクションへ到達しました"
   end
 
+  def destroy
+    puts "destroyメソッドに到達しました"
+    puts "アドレスidは#{params[:id]}です"
+    address = Address.find(params[:id])
+    address.destroy
+    flash[:notice] = "Address was successfully destroyed."
+
+    @addresses = Address.all
+    @address = Address.new
+    redirect_to addresses_path
+  end
+
   private
 
   def address_params
