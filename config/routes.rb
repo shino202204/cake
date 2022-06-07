@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  # namespace :public do
+  #   get 'addresses/index'
+  #   get 'addresses/edit'
+  # end
+
+  resources :addresses, only:[:index, :edit, :create, :update, :destroy], controller: 'public/addresses'
+
   get 'items/' => 'public/items#index'
   get 'items/:id' => 'public/items#show', as: 'item'
 
