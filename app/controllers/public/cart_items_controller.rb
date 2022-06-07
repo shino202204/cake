@@ -1,5 +1,6 @@
 class Public::CartItemsController < ApplicationController
   def index
+    @cart_item = CartItem.new
     @cart_items = CartItem.all
     @total_payment = 0
   end
@@ -27,6 +28,17 @@ class Public::CartItemsController < ApplicationController
     end
   end
 
+  def update
+    puts "updateアクションに到達しました"
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.update(cart_item_params)
+    flash[:notice] = "CartItem was successfully updated."
+
+    @cart_items = CartItem.all
+    @total_payment = 0
+    redirect_to cart_items_path
+  end
+
   def destroy_all
     puts "destroy_allメソッドに到達しました"
     if current_customer.cart_items.destroy_all
@@ -38,24 +50,15 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy
-    # @cart_item = CartItem.new(cart_item_params)
-    # if @cart_item.item_id == '0'
-      puts "destroyメソッドに到達しました"
-      # cart_item = current_customer.cart_items.find_by(item_id: params[:id])
-      puts "カートidは#{params[:id]}です"
-      cart_item = CartItem.find(params[:id])
-      cart_item.destroy
-      flash[:notice] = "CartItem was successfully destroyed."
+    puts "destroyメソッドに到達しました"
+    puts "カートidは#{params[:id]}です"
+    cart_item = CartItem.find(params[:id])
+    cart_item.destroy
+    flash[:notice] = "CartItem was successfully destroyed."
 
-      @cart_items = CartItem.all
-      @total_payment = 0
-      redirect_to cart_items_path
-      # puts "カートを空にします"
-    # else
-      # @cart_items = CartItem.all
-      # @total_payment = 0
-      # render :index
-    # end
+    @cart_items = CartItem.all
+    @total_payment = 0
+    redirect_to cart_items_path
   end
 
   private

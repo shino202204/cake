@@ -3,12 +3,6 @@
 
 <h2>ショッピングカート</h2>
 <%= button_to "カートを空にする", cart_items_destroy_all_path, method: :delete %>
-<!--<= form_with model: @cart_item, url: cart_items_destroy_all_path, method: :delete do |f| %>-->
-<!--  <= f.hidden_field :customer_id, :value => current_customer.id %>-->
-<!--  <= f.hidden_field :item_id, :value => 0 %>-->
-<!--  <= f.hidden_field :amount, :value => 0 %>-->
-<!--  <= f.submit 'カートを空にする' %>-->
-<!--< end %>-->
 
 <table>
   <thead>
@@ -22,9 +16,18 @@
   </thead>
   <% @cart_items.each do |cart_item| %>
   <tbody>
-    <td><%= cart_item.item.name %></td>
-    <td><%= cart_item.item.with_tax_price %></td>
-    <td><%= cart_item.amount %></td>
+    <%= form_with model: @cart_item, url: "/cart_items/#{cart_item.id}", method: :patch do |f| %>
+      <td><%= cart_item.item.name %></td>
+      <%= f.hidden_field :item_id, :value =>  cart_item.item_id %>
+      <%= f.hidden_field :customer_id, :value => current_customer.id %>
+
+      <td><%= cart_item.item.with_tax_price %></td>
+      <td>
+      <%= f.select :amount, *[1..10], { include_blank: "#{cart_item.amount}" } %>
+      <%= f.submit '変更' %>
+      </td>
+    <% end %>
+
     <td><%= cart_item.subtotal %></td>
     <td>
       <%= button_to "削除する", "/cart_items/#{cart_item.id}", method: :delete %>
