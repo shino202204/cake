@@ -18,6 +18,19 @@ class Public::AddressesController < ApplicationController
 
   def edit
     puts "editアクションへ到達しました"
+    @address = Address.find(params[:id])
+  end
+
+  def update
+    puts "updateアクションへ到達しました"
+    @address = Address.find(params[:id])
+    if @address.update(address_params)
+      flash[:notice] = "Address was successfully updated."
+      redirect_to addresses_path
+    else
+      render :edit
+    end
+
   end
 
   def destroy
