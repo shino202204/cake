@@ -18,5 +18,11 @@ module Cake
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # 日本語対応
+    # この記述によりRailsアプリケーションのデフォルト言語が日本語となる
+    # 次のステップ：ymlファイルをもとに日本語化を行う
+    config.i18n.default_locale = :ja
+    config.i18n.load_path += Dir[Rails.root.join('config/locales/*.yml').to_s]
   end
 end
