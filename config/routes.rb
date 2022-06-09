@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
-  # namespace :public do
-  #   get 'addresses/index'
-  #   get 'addresses/edit'
-  # end
 
+  resources :orders, only:[:new, :comfirm, :complete, :create, :index, :show], controller: 'public/orders'
   resources :addresses, only:[:index, :edit, :create, :update, :destroy], controller: 'public/addresses'
 
   get 'items/' => 'public/items#index'
