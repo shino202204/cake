@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   resources :orders, only:[:new, :comfirm, :complete, :create, :index, :show], controller: 'public/orders'
+  post '/orders/confirm' => 'public/orders#confirm'
+
   resources :addresses, only:[:index, :edit, :create, :update, :destroy], controller: 'public/addresses'
 
   get 'items/' => 'public/items#index'

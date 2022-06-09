@@ -2,7 +2,8 @@ class Public::OrdersController < ApplicationController
   def new
   end
 
-  def comfirm
+  def confirm
+    puts 'confirmアクションに到達しました'
   end
 
   def complete
