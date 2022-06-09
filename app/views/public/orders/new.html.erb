@@ -17,7 +17,8 @@
     <label>お届け先</label>
     <div>
         <%= f.radio_button :address, 0, checked: "checked" %>
-        <%= f.label :address, 'ご自身の住所' %>
+        <%= f.label :address, 'ご自身の住所' %><br>
+        <%= @main_address %>
     </div>
     <div>
         <%= f.radio_button :address, 1 %>
