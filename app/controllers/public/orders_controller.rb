@@ -12,6 +12,8 @@ class Public::OrdersController < ApplicationController
     @cart_items = current_customer.cart_items.all
     @total_payment = 0
     @shipping_cost = 800
+    @order = Order.new(order_params)
+    binding.pry #追記する
   end
 
   def complete
@@ -21,5 +23,11 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+  end
+
+  private
+
+  def order_params
+    params.require(:order).permit(:payment_method)
   end
 end
