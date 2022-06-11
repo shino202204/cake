@@ -27,10 +27,16 @@
     </div>
     <div>
         <%= f.radio_button :select_address, 2 %>
-        <%= f.label :select_address, '新しいお届け先' %>
+        <%= f.label :select_address, '新しいお届け先' %><br>
+        <%= f.label :postal_code, '郵便番号(ハイフンなし)' %>
+        <%= f.text_field :postal_code %><br>
+        <%= f.label :postal_code, '住所' %>
+        <%= f.text_field :address %><br>
+        <%= f.label :name, '宛名' %>
+        <%= f.text_field :name %>
     </div>
     <div>
     <%= f.submit '確認画面へ進む' %>
-    <!--</div>-->
+    </div>
 
 <% end %>

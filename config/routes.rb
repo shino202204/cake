@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   resources :orders, only:[:new, :comfirm, :complete, :create, :index, :show], controller: 'public/orders'
   post '/orders/confirm' => 'public/orders#confirm'
+  get '/orders/complete' => 'public/orders#complete'
 
   resources :addresses, only:[:index, :edit, :create, :update, :destroy], controller: 'public/addresses'
 

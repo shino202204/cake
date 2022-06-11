@@ -1,7 +1,7 @@
 class Public::OrdersController < ApplicationController
   def new
     @order = Order.new
-    @main_address = current_customer.address
+    @main_address = current_customer.address_display
     # @main_address = current_customer.address.address_display
     # @main_address = Address.find_by(customer_id: current_customer.id)
   end
@@ -12,8 +12,37 @@ class Public::OrdersController < ApplicationController
     @cart_items = current_customer.cart_items.all
     @total_payment = 0
     @shipping_cost = 800
+
     @order = Order.new(order_params)
-    binding.pry #追記する
+
+    select_address = params[:order][:select_address]
+    puts "選択された住所の数値は#{select_address}です"
+
+    if select_address == '0'
+      puts 'メイン住所が選択されました'
+      # 自身の住所が選択された場合
+      # 上記パラメータで取得した「新しいお届け先」の情報を書き換える
+      @order.postal_code = current_customer.postal_code
+      @order.address = current_customer.address
+      @order.name = current_customer.first_name + current_customer.last_name
+    elsif select_address == '1'
+      puts '登録済み住所が選択されました'
+      # 登録済み住所が選択された場合
+      @address = Address.find(params[:order][:address_id])
+      @order.postal_code = @address.postal_code
+      @order.address = @address.address
+      @order.name = @address.name
+    end
+
+    # 支払方法
+    @payment_method = ''
+    if @order.payment_method == 'credit_card'
+      @payment_method = Order.payment_methods_i18n[:credit_card]
+    elsif @order.payment_method == 'transfer'
+      @payment_method = Order.payment_methods_i18n[:transfer]
+    end
+
+    # binding.pry #追記する
   end
 
   def complete
@@ -28,6 +57,6 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:payment_method)
+    params.require(:order).permit(:payment_method, :postal_code, :address, :name)
   end
 end

@@ -4,4 +4,8 @@ class Order < ApplicationRecord
 
   # アソシエーション
   belongs_to :customer
+
+  def order_display
+    '〒' + postal_code + ' ' + address
+  end
 end

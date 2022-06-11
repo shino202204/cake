@@ -7,4 +7,8 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def address_display
+    '〒' + postal_code + ' ' + address
+  end
 end
