@@ -46,6 +46,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def complete
+    puts 'completeアクションに到達しました'
   end
 
   def index

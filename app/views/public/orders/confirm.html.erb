@@ -24,11 +24,11 @@
     請求金額
     <%= @shipping_cost + @total_payment %><br>
 
-<%= form_with model: @order, url: orders_complete_path, method: :get do |f| %>
+<%= form_with model: @order, url: orders_complete_path, method: :post do |f| %>
     支払方法
     <%= @payment_method %><br>
     お届け先
     <%= @order.order_display %><br>
     <%= @order.name %><br>
-
+    <%= f.submit '注文を確定する' %>
 <% end %>
