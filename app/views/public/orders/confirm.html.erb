@@ -17,14 +17,16 @@
     <% @total_payment += cart_item.subtotal %>
 <% end %>
 
+<%= form_with model: @order, url: orders_path, method: :post do |f| %>
     送料
     <%= @shipping_cost %><br>
+    <%= f.hidden_field :shipping_cost, :value => @shipping_cost %>
     商品合計
     <%= @total_payment %><br>
+    <%= f.hidden_field :total_payment, :value => @total_payment %>
     請求金額
     <%= @shipping_cost + @total_payment %><br>
 
-<%= form_with model: @order, url: orders_path, method: :post do |f| %>
     支払方法
     <%= @payment_method %><br>
     <%= f.hidden_field :payment_method, :value => @payment_method %>

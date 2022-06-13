@@ -47,6 +47,14 @@ class Public::OrdersController < ApplicationController
 
   def create
     puts 'createアクションに到達しました'
+    # @ordder = Order.new(order_params)
+    puts "注文者は#{current_customer.last_name + current_customer.first_name}です"
+    puts "配送先は#{params[:order][:postal_code]}です"
+    puts "配送先は#{params[:order][:address]}です"
+    puts "配送先は#{params[:order][:name]}です"
+    puts "送料は#{params[:order][:shipping_cost]}です"
+    puts "請求額は#{params[:order][:total_payment]}です"
+    puts "支払方法は#{params[:order][:payment_method]}です"
     render :complete
   end
 
@@ -64,6 +72,6 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:payment_method, :postal_code, :address, :name)
+    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :shipping_cost, :total_payment)
   end
 end
