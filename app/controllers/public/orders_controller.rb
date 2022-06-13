@@ -45,6 +45,12 @@ class Public::OrdersController < ApplicationController
     # binding.pry #追記する
   end
 
+  def create
+    puts 'createアクションに到達しました'
+    render :complete
+  end
+
+
   def complete
     puts 'completeアクションに到達しました'
   end
