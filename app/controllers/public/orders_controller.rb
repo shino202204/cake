@@ -55,10 +55,18 @@ class Public::OrdersController < ApplicationController
     puts "送料は#{params[:order][:shipping_cost]}です"
     puts "請求額は#{params[:order][:total_payment]}です"
     puts "支払方法は#{params[:order][:payment_method]}です"
+    if params[:order][:payment_method] == 'クレジットカード'
+      puts "登録する値は0です"
+    elsif params[:order][:payment_method] == '銀行振込'
+      puts "登録する値は1です"
+    end
 
     @cart_items = current_customer.cart_items.all
     @cart_items.each do |cart_item|
+      puts "注文idは直前でsaveしたインスタンスのidを登録します"
       puts "注文者のカートには#{cart_item.item.name}があります"
+      puts "商品idは#{cart_item.item.id}です"
+      puts "税込価格は#{cart_item.item.with_tax_price}です"
       puts "数量は#{cart_item.amount}です"
     end
 
