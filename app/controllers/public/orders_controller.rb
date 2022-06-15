@@ -46,8 +46,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
+    # 確認用
     puts 'createアクションに到達しました'
-    # @ordder = Order.new(order_params)
     puts "注文者は#{current_customer.last_name + current_customer.first_name}です"
     puts "配送先は#{params[:order][:postal_code]}です"
     puts "配送先は#{params[:order][:address]}です"
@@ -55,11 +55,21 @@ class Public::OrdersController < ApplicationController
     puts "送料は#{params[:order][:shipping_cost]}です"
     puts "請求額は#{params[:order][:total_payment]}です"
     puts "支払方法は#{params[:order][:payment_method]}です"
+
+
+    # 注文(Order)モデルに注文内容を保存
+    @order = Order.new
+
     if params[:order][:payment_method] == 'クレジットカード'
       puts "登録する値は0です"
+      @order.payment_method = 0
+      # params[:order][:payment_method] = 0
     elsif params[:order][:payment_method] == '銀行振込'
       puts "登録する値は1です"
+      @order.payment_method = 1
     end
+
+    binding.pry #追記する
 
     @cart_items = current_customer.cart_items.all
     @cart_items.each do |cart_item|
