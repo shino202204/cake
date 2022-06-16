@@ -24,7 +24,7 @@ class Public::OrdersController < ApplicationController
       # 上記パラメータで取得した「新しいお届け先」の情報を書き換える
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
-      @order.name = current_customer.first_name + current_customer.last_name
+      @order.name = current_customer.last_name + current_customer.first_name
     elsif select_address == '1'
       puts '登録済み住所が選択されました'
       # 登録済み住所が選択された場合
@@ -55,32 +55,49 @@ class Public::OrdersController < ApplicationController
     puts "送料は#{params[:order][:shipping_cost]}です"
     puts "請求額は#{params[:order][:total_payment]}です"
     puts "支払方法は#{params[:order][:payment_method]}です"
-
+    # @cart_items.each do |cart_item|
+    #   puts "注文idは直前でsaveしたインスタンスのidを登録します"
+    #   puts "注文者のカートには#{cart_item.item.name}があります"
+    #   puts "商品idは#{cart_item.item.id}です"
+    #   puts "税込価格は#{cart_item.item.with_tax_price}です"
+    #   puts "数量は#{cart_item.amount}です"
+    # end
 
     # 注文(Order)モデルに注文内容を保存
     @order = Order.new
-
     if params[:order][:payment_method] == 'クレジットカード'
-      puts "登録する値は0です"
       @order.payment_method = 0
-      # params[:order][:payment_method] = 0
     elsif params[:order][:payment_method] == '銀行振込'
-      puts "登録する値は1です"
       @order.payment_method = 1
     end
+    @order.customer_id = current_customer.id
+    @order.postal_code = params[:order][:postal_code]
+    @order.address = params[:order][:address]
+    @order.name = params[:order][:name]
+    @order.shipping_cost = params[:order][:shipping_cost]
+    @order.total_payment = params[:order][:total_payment]
 
-    binding.pry #追記する
+    # binding.pry #追記する
 
+    # 注文(Order)が保存できれば注文詳細(OrderDetail)を保存する
+    count = 0
     @cart_items = current_customer.cart_items.all
-    @cart_items.each do |cart_item|
-      puts "注文idは直前でsaveしたインスタンスのidを登録します"
-      puts "注文者のカートには#{cart_item.item.name}があります"
-      puts "商品idは#{cart_item.item.id}です"
-      puts "税込価格は#{cart_item.item.with_tax_price}です"
-      puts "数量は#{cart_item.amount}です"
-    end
 
-    render :complete
+    if @order.save!
+      @cart_items.each do |cart_item|
+        order_detail = OrderDetail.new
+        order_detail.order_id = @order.id
+        order_detail.item_id = cart_item.item.id
+        order_detail.price = cart_item.item.with_tax_price
+        order_detail.amount = cart_item.amount
+        order_detail.save!
+        count += 1
+      end
+      puts "#{count}件の注文詳細を保存しました"
+      render :complete
+    else
+      render :complete
+    end
   end
 
 

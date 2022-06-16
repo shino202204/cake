@@ -30,6 +30,12 @@
     支払方法
     <%= @payment_method %><br>
     <%= f.hidden_field :payment_method, :value => @payment_method %>
+
+    <!--< if @payment_method == 'クレジットカード' %>-->
+    <!--    <= f.hidden_field :payment_method, :value => 0 %>-->
+    <!--< elsif @payment_method == '銀行振込' %>-->
+    <!--    <= f.hidden_field :payment_method, :value => 1 %>-->
+    <!--< end %>-->
     お届け先
     <%= @order.order_display %><br>
     <%= @order.name %><br>
