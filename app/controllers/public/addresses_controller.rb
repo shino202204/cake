@@ -2,7 +2,8 @@ class Public::AddressesController < ApplicationController
   def index
     puts "indexアクションへ到達しました"
     @address = Address.new
-    @addresses = Address.all
+    @addresses = Address.where(customer_id: current_customer.id)
+    # @addresses = Address.all
   end
 
   def create
