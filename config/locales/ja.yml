@@ -16,9 +16,16 @@ ja: # 日本語の設定を行う
         credit_card: "クレジットカード"
         transfer: "銀行振込"
 
+      status:
+        awaiting_payment: "入金待ち"
+        payment_confirmation: "入金確認"
+        under_manufacture: "製作中"
+        preparing_to_ship: "発送準備中"
+        shipped: "発送済み"
+
     order_detail:
       making_statuses:
         not_available: "製作不可"
-        awaiting: "製作待ち"
-        under: "製作中"
+        awaiting_manufacture: "製作待ち"
+        under_manufacture: "製作中"
         completion: "製作完了"
