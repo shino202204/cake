@@ -7,6 +7,6 @@ class Order < ApplicationRecord
   has_many :order_details
 
   def order_display
-    '〒' + postal_code + ' ' + address
+    '〒' + postal_code + ' ' + address + '' + name
   end
 end

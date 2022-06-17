@@ -17,9 +17,7 @@
   <% @orders.each do |order| %>
   <tbody>
     <td><%= order.created_at %></td>
-    <td><%= order.postal_code %></td>
-    <td><%= order.address %></td>
-    <td><%= order.name %></td>
+    <td><%= order.order_display %></td>
     <td><%= order.shipping_cost %></td>
     <td><%= order.status %></td>
     <td>
