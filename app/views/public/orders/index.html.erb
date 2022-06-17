@@ -18,8 +18,14 @@
   <tbody>
     <td><%= order.created_at %></td>
     <td><%= order.order_display %></td>
-    <td><%= order.shipping_cost %></td>
-    <td><%= order.status %></td>
+    <td>
+      <% @order_detail = OrderDetail.where(order_id: order.id) %>
+      <% @order_detail.each do |order_detail| %>
+        <%= order_detail.item.name %><br>
+      <% end %>
+    </td>
+    <td><%= order.total_payment %>円</td>
+    <!--<td><= Order.status[:] %></td>-->
     <td>
       <%= link_to '表示する', order_path(order.id) %>
     </td>
