@@ -16,11 +16,12 @@
   </thead>
   <% @orders.each do |order| %>
   <tbody>
-    <td><%= order.created_at %></td>
+    <!--<td><= order.created_at %></td>-->
+    <td><%= l order.created_at %></td>
     <td><%= order.order_display %></td>
     <td>
-      <% @order_detail = OrderDetail.where(order_id: order.id) %>
-      <% @order_detail.each do |order_detail| %>
+      <% @order_details = OrderDetail.where(order_id: order.id) %>
+      <% @order_details.each do |order_detail| %>
         <%= order_detail.item.name %><br>
       <% end %>
     </td>

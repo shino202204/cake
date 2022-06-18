@@ -2,6 +2,7 @@ class Public::OrdersController < ApplicationController
   def new
     @order = Order.new
     @main_address = current_customer.address_display
+    @address = Address.where(customer_id: current_customer.id)
     # @main_address = current_customer.address.address_display
     # @main_address = Address.find_by(customer_id: current_customer.id)
   end
@@ -94,6 +95,8 @@ class Public::OrdersController < ApplicationController
         count += 1
       end
       puts "#{count}件の注文詳細を保存しました"
+      # ログイン中ユーザーのカート内商品をすべて削除
+      current_customer.cart_items.destroy_all
       render :complete
     else
       render :complete
@@ -110,6 +113,34 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+    # 注文情報を取得
+    @order = Order.find(params[:id])
+    # 注文詳細を取得
+    @order_details = OrderDetail.where(order_id: @order.id)
+
+    # 支払方法
+    @payment_method = ''
+    if @order.payment_method == 'credit_card'
+      @payment_method = Order.payment_methods_i18n[:credit_card]
+    elsif @order.payment_method == 'transfer'
+      @payment_method = Order.payment_methods_i18n[:transfer]
+    end
+
+    # ステータス
+    @status = ''
+    if @order.status == 'awaiting_payment'
+      @status = Order.statuses_i18n[:awaiting_payment]
+    elsif @order.status == 'payment_confirmation'
+      @status = Order.statuses_i18n[:payment_confirmation]
+    elsif @order.status == 'under_manufacture'
+      @status = Order.statuses_i18n[:under_manufacture]
+    elsif @order.status == 'preparing_to_ship'
+      @status = Order.statuses_i18n[:preparing_to_ship]
+    elsif @order.status == 'shipped'
+      @status = Order.statuses_i18n[:shipped]
+    else
+    end
+
   end
 
   private
