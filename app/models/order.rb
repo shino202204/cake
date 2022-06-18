@@ -12,6 +12,17 @@ class Order < ApplicationRecord
     '〒' + postal_code + ' ' + address + '' + name
   end
 
+  # 支払方法
+  def return_payment_method
+    if payment_method == 'credit_card'
+      payment_method = Order.payment_methods_i18n[:credit_card]
+    elsif status == 'transfer'
+      payment_method = Order.payment_methods_i18n[:transfer]
+    else
+    end
+    return payment_method
+  end
+
   # 注文ステータス
   def return_status
     if status == 'awaiting_payment'
