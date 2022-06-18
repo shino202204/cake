@@ -6,5 +6,21 @@
     <td>購入日時</td>
     <td>購入者</td>
     <td>注文個数</td>
+    <td>注文ステータス</td>
   </thead>
+  <% @orders.each do |order| %>
+  <tbody>
+    <td><%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+    <td><%= order.customer.last_name +  order.customer.first_name %></td>
+    <td>
+      <% @order_details = OrderDetail.where(order_id: order.id) %>
+      <% @amount = 0 %>
+      <% @order_details.each do |order_detail| %>
+        <% @amount += order_detail.amount %>
+      <% end %>
+      <%= @amount %>
+    </td>
+    <td><%= order.return_status %></td>
+  </tbody>
+  <% end %>
 </table>

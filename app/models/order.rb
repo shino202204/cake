@@ -11,4 +11,21 @@ class Order < ApplicationRecord
   def order_display
     '〒' + postal_code + ' ' + address + '' + name
   end
+
+  # 注文ステータス
+  def return_status
+    if status == 'awaiting_payment'
+      status = Order.statuses_i18n[:awaiting_payment]
+    elsif status == 'payment_confirmation'
+      status = Order.statuses_i18n[:payment_confirmation]
+    elsif status == 'under_manufacture'
+      status = Order.statuses_i18n[:under_manufacture]
+    elsif status == 'preparing_to_ship'
+      status = Order.statuses_i18n[:preparing_to_ship]
+    elsif status == 'shipped'
+      status = Order.statuses_i18n[:shipped]
+    else
+    end
+    return status
+  end
 end
