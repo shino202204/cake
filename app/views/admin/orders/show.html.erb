@@ -12,4 +12,36 @@
   支払方法
   <%= @order.return_payment_method %>
   <br>
+  注文ステータス
+  <%= f.select :status, [['入金待ち',0], ['入金確認',1], ['製作中',2], ['発送準備中',3], ['発送済み',4]], { include_blank: @order.status } %>
 <% end %>
+
+<table>
+  <thead>
+    <td>商品名</td>
+    <td>単価（税込）</td>
+    <td>数量</td>
+    <td>小計</td>
+    <td>製作ステータス</td>
+    <td></td>
+  </thead>
+  <% @order_details.each do |order_detail| %>
+  <tbody>
+    <%= form_with model: @order_detail, url: admin_order_detail_path, method: :patch do |f| %>
+      <td><%= order_detail.item.name %></td>
+      <td><%= order_detail.price %></td>
+      <td><%= order_detail.amount %></td>
+      <td><%= order_detail.price * order_detail.amount %></td>
+      <td>
+        <%= order_detail.making_status %>
+        <%= f.select :making_status, [['製作不可',0], ['製作待ち',1], ['製作中',2], ['製作完了',3]], { include_blank: "#{order_detail.making_status}" } %>
+      </td>
+      <td>更新</td>
+    <% end %>
+  </tbody>
+  <% end %>
+</table>
+
+<h3>商品合計</h3>
+<h3>送料</h3>
+<h3>請求金額合計</h3>

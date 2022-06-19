@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :items, only:[:index, :show, :edit, :create, :update, :new]
     resources :customers, only:[:index, :show, :edit, :update]
     resources :orders, only:[:show, :update]
+    resources :order_details, only:[:update]
   end
 
   namespace :public do
