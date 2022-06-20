@@ -14,7 +14,6 @@
   <br>
   注文ステータス
   <%= f.select :status, [['入金待ち',0], ['入金確認',1], ['製作中',2], ['発送準備中',3], ['発送済み',4]], { include_blank: @order.status } %>
-<% end %>
 
 <table>
   <thead>
@@ -43,5 +42,10 @@
 </table>
 
 <h3>商品合計</h3>
+<%= @order.total_payment %>
 <h3>送料</h3>
+<%= @order.shipping_cost %>
 <h3>請求金額合計</h3>
+<%= @order.total_payment + @order.shipping_cost %>
+
+<% end %>
