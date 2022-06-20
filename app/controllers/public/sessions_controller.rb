@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
+
+  # サインアウト後の遷移先
+  def after_sign_out_path_for(resource)
+    root_path
+  end
+
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

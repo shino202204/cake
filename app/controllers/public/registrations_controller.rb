@@ -10,7 +10,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
    # サインイン後にどこに遷移するかを設定しているメソッド(Deviseが用意している)
   def after_sign_in_path_for(resource)
-    "/"
+    customers_my_page_path
   end
 
   # ユーザー登録（sign_up)の際に、keys: のデータ操作を許可
