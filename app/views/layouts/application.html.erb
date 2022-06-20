@@ -52,16 +52,19 @@
      </li>
     <% else %>
      <li>
+      <%= link_to "About", about_path %>
+     </li>
+     <li>
+      <%= link_to "商品一覧", items_path %>
+     </li>
+     <li>
       <%= link_to "新規登録", new_customer_registration_path %>
      </li>
+     <!--<li>-->
+     <!-- <= link_to "管理者ログイン", new_admin_session_path %>-->
+     <!--</li>-->
      <li>
-      <%= link_to "管理者ログイン", new_admin_session_path %>
-     </li>
-     <li>
-      <%= link_to "顧客ログイン", customer_session_path %>
-     </li>
-     <li>
-      <%= link_to "About", about_path %>
+      <%= link_to "ログイン", customer_session_path %>
      </li>
     <% end %>
     <%= yield %>
