@@ -1,1 +1,20 @@
-顧客のトップページです
+<side>
+  <h3>ジャンル検索</h3>
+  <p>ケーキ</p>
+  <p>焼き菓子</p>
+  <p>プリン</p>
+  <p>キャンディ</p>
+</side>
+
+<main>
+  <h1>ようこそ、ながのCAKEへ！</h1>
+</main>
+
+<h2>新着商品</h2>
+<% @items.each do |item| %>
+<tbody>
+  <td><%= link_to image_tag(item.get_image(100, 100)), item_path(item.id) %></td>
+  <td><%= item.name %></td>
+  <td><%= item.price %></td>
+</tbody>
+<% end %>
