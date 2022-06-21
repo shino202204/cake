@@ -1,5 +1,5 @@
 <h1>注文履歴詳細</h1>
-<%= form_with model: @order, url: admin_items_path, method: :patch do |f| %>
+<%= form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>
   購入者
   <%= @order.customer.last_name + @order.customer.first_name %>
   <br>
@@ -14,6 +14,8 @@
   <br>
   注文ステータス
   <%= f.select :status, [['入金待ち',0], ['入金確認',1], ['製作中',2], ['発送準備中',3], ['発送済み',4]], { include_blank: @order.return_status } %>
+  <%= f.submit '更新' %>
+<% end %>
 
 <table>
   <thead>
@@ -46,5 +48,3 @@
 <%= @order.shipping_cost %>
 <h3>請求金額合計</h3>
 <%= @order.total_payment + @order.shipping_cost %>
-
-<% end %>
