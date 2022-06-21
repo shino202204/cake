@@ -14,13 +14,13 @@ class Order < ApplicationRecord
 
   # 支払方法
   def return_payment_method
+    result = ''
     if payment_method == 'credit_card'
-      payment_method = Order.payment_methods_i18n[:credit_card]
-    elsif status == 'transfer'
-      payment_method = Order.payment_methods_i18n[:transfer]
-    else
+      result = Order.payment_methods_i18n[:credit_card]
+    elsif payment_method == 'transfer'
+      result = Order.payment_methods_i18n[:transfer]
     end
-    return payment_method
+    return result
   end
 
   # 注文ステータス
