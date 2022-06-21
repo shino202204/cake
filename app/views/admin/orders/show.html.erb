@@ -13,7 +13,7 @@
   <%= @order.return_payment_method %>
   <br>
   注文ステータス
-  <%= f.select :status, [['入金待ち',0], ['入金確認',1], ['製作中',2], ['発送準備中',3], ['発送済み',4]], { include_blank: @order.status } %>
+  <%= f.select :status, [['入金待ち',0], ['入金確認',1], ['製作中',2], ['発送準備中',3], ['発送済み',4]], { include_blank: @order.return_status } %>
 
 <table>
   <thead>
@@ -32,8 +32,7 @@
       <td><%= order_detail.amount %></td>
       <td><%= order_detail.price * order_detail.amount %></td>
       <td>
-        <%= order_detail.making_status %>
-        <%= f.select :making_status, [['製作不可',0], ['製作待ち',1], ['製作中',2], ['製作完了',3]], { include_blank: "#{order_detail.making_status}" } %>
+        <%= f.select :making_status, [['製作不可',0], ['製作待ち',1], ['製作中',2], ['製作完了',3]], { include_blank: order_detail.return_making_statuses } %>
       </td>
       <td>更新</td>
     <% end %>
