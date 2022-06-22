@@ -8,4 +8,8 @@
 <p>退会する場合は、「退会する」をクリックしてください。</p>
 
 <div><%= link_to '退会しない', customers_my_page_path %></div>
-<div>退会する</div>
+
+<%= form_with url: customers_withdraw_path, method: :patch do |f|%>
+  <div><%= f.submit '退会する', data:{confirm: "本当に退会しますか？"} %></div>
+  <%= f.hidden_field :is_deleted, :value => true %>
+<% end %>

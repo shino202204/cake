@@ -18,7 +18,7 @@ class Public::SessionsController < Devise::SessionsController
       end
 
       if @customer.is_deleted == true
-        redirect_to new_customer_session
+        redirect_to new_customer_registration_path
       end
     end
   end

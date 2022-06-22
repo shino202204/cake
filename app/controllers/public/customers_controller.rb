@@ -20,6 +20,31 @@ class Public::CustomersController < ApplicationController
   def unsubscribe
   end
 
+  def withdraw
+    # 確認用
+    puts "withdrawアクションです"
+    puts "受け取ったパラメータは#{params[:is_deleted]}です"
+    # パラメータ取得
+    param = params[:is_deleted]
+    # 会員情報を取得
+    customer = Customer.find(current_customer.id)
+
+    # 退会フラグを更新
+    if customer.is_deleted == true
+      puts "既に退会処理済みです"
+      render :unsubscribe
+    elsif customer.is_deleted == false
+      # customer.is_deleted = true
+      customer.update(is_deleted: true)
+      puts "退会フラグを立てました"
+      reset_session
+      redirect_to root_path
+    else
+      puts "値が不正です"
+    end
+
+  end
+
   private
 
   def customer_params
