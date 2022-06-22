@@ -36,7 +36,7 @@
       <td>
         <%= f.select :making_status, [['製作不可',0], ['製作待ち',1], ['製作中',2], ['製作完了',3]], { include_blank: order_detail.return_making_statuses } %>
       </td>
-      <td>更新</td>
+      <td><%= f.submit '更新' %></td>
     <% end %>
   </tbody>
   <% end %>
