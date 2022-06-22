@@ -37,7 +37,7 @@
       <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
      </li>
     <% elsif customer_signed_in? %>
-     <div>ようこそ <%= current_customer.last_name %> さん</div>
+     <div>ようこそ <%= current_customer.last_name + current_customer.first_name %> さん</div>
      <li>
       <%= link_to "マイページ", customers_my_page_path %>
      </li>
