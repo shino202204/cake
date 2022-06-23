@@ -28,7 +28,7 @@
   </thead>
   <% @order_details.each do |order_detail| %>
   <tbody>
-    <%= form_with model: @order_detail, url: admin_order_detail_path, method: :patch do |f| %>
+    <%= form_with model: @order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f| %>
       <td><%= order_detail.item.name %></td>
       <td><%= order_detail.price %></td>
       <td><%= order_detail.amount %></td>
