@@ -26,53 +26,49 @@
       <ul class="navbar-nav ml-auto">
 
       <% if admin_signed_in? %>
-      <li>
-       <%= link_to "商品一覧", admin_items_path %>
+      <li class="nav-item">
+       <%= link_to "商品一覧", admin_items_path, class: "nav-link text-dark" %>
       </li>
-      <li>
-       <%= link_to "会員一覧", admin_customers_path %>
+      <li class="nav-item">
+       <%= link_to "会員一覧", admin_customers_path, class: "nav-link text-dark" %>
       </li>
-      <li>
-       <%= link_to "注文履歴一覧", admin_root_path %>
+      <li class="nav-item">
+       <%= link_to "注文履歴一覧", admin_root_path, class: "nav-link text-dark" %>
       </li>
-      <li>
-       <%= link_to "ジャンル一覧", admin_genres_path %>
+      <li class="nav-item">
+       <%= link_to "ジャンル一覧", admin_genres_path, class: "nav-link text-dark" %>
       </li>
-      <li>
-       <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+      <li class="nav-item">
+       <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-dark" %>
       </li>
      <% elsif customer_signed_in? %>
       <div>ようこそ <%= current_customer.last_name + current_customer.first_name %> さん</div>
-      <li>
-       <%= link_to "マイページ", customers_my_page_path %>
+      <li class="nav-item">
+       <%= link_to "マイページ", customers_my_page_path, class: "nav-link text-dark" %>
       </li>
-      <li>
-       <%= link_to "商品一覧", items_path %>
+      <li class="nav-item">
+       <%= link_to "商品一覧", items_path, class: "nav-link text-dark" %>
       </li>
-      <li>
-       <%= link_to "カート", cart_items_path %>
+      <li class="nav-item">
+       <%= link_to "カート", cart_items_path, class: "nav-link text-dark" %>
       </li>
-      <li>
-       <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+      <li class="nav-item">
+       <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link text-dark" %>
       </li>
      <% else %>
-      <li>
-       <%= link_to "About", about_path %>
+      <li class="nav-item">
+       <%= link_to "About", about_path, class: "nav-link text-dark" %>
       </li>
-      <li>
-       <%= link_to "商品一覧", items_path %>
+      <li class="nav-item">
+       <%= link_to "商品一覧", items_path, class: "nav-link text-dark" %>
       </li>
-      <li>
-       <%= link_to "新規登録", new_customer_registration_path %>
+      <li class="nav-item">
+       <%= link_to "新規登録", new_customer_registration_path, class: "nav-link text-dark" %>
       </li>
-      <!--<li>-->
-      <!-- <= link_to "管理者ログイン", new_admin_session_path %>-->
-      <!--</li>-->
-      <li>
-       <%= link_to "ログイン", customer_session_path %>
+      <li class="nav-item">
+       <%= link_to "ログイン", customer_session_path, class: "nav-link text-dark" %>
       </li>
      <% end %>
-     <%= yield %>
      </ul>
      </div>
     </div>
@@ -83,5 +79,29 @@
    <%= flash[:notice] %>
    </p>
   <% end %>
+
+  <main class="mb-auto">
+  <%= yield %>
+  </main>
+
+  <footer class="bg-dark text-white pt-5 pb-4">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            ながのCAKE <i class="fa-solid fa-star-and-crescent"></i>
+          </div>
+          <div class="col-md-8">
+            <ul class="p-0 list-unstyled">
+              <li>
+                <a href="" title="About" class="text-white-50">会社概要</a>
+              </li>
+              <li>
+                <a href="" title="License informations" class="text-white-50">プライバシーポリシー</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
  </body>
 </html>
