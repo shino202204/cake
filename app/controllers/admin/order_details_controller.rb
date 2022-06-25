@@ -26,10 +26,18 @@ class Admin::OrderDetailsController < ApplicationController
     if @making_status.to_i == 3
       @order_detail.update(making_status: 3)
     end
+
     # 製作ステータスが全て「製作完了」の場合、
     # 注文ステータスを「発送準備中」にする。
-    
+    puts "全レコード数は#{@order_details.count}です"
+    puts "製作完了のレコード数は#{@order_details.where(making_status: 3).count}です"
+    all_count = @order_details.count
+    completion_count = @order_details.where(making_status: 3).count
 
+    if all_count == completion_count
+      puts "注文ステータスを発送準備中にします"
+      @order.update(status: 3)
+    end
 
     # 注文履歴詳細に遷移
     render 'admin/orders/show'
