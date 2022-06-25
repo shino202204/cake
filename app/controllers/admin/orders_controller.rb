@@ -24,12 +24,14 @@ class Admin::OrdersController < ApplicationController
       @order_details.each do |order_detail|
         order_detail.update(making_status: 1)
       end
+      flash[:notice] = "注文・製作ステータスを更新しました"
     end
 
     # 注文ステータスが発送済み（4）
     if @status.to_i == 4
       @order.update(status: 4)
       puts"注文ステータスを発送済みにしました"
+      flash[:notice] = "注文ステータスを更新しました"
     end
 
     render :show

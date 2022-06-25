@@ -21,10 +21,12 @@ class Admin::OrderDetailsController < ApplicationController
     # 製作中
     if @making_status.to_i == 2
       @order_detail.update(making_status: 2)
+      flash[:notice] = "製作ステータスを更新しました"
     end
     # 製作完了
     if @making_status.to_i == 3
       @order_detail.update(making_status: 3)
+      flash[:notice] = "製作ステータスを更新しました"
     end
 
     # 製作ステータスが全て「製作完了」の場合、
@@ -37,6 +39,7 @@ class Admin::OrderDetailsController < ApplicationController
     if all_count == completion_count
       puts "注文ステータスを発送準備中にします"
       @order.update(status: 3)
+      flash[:notice] = "注文・製作ステータスを更新しました"
     end
 
     # 注文履歴詳細に遷移
