@@ -74,17 +74,20 @@
     </div>
    </nav>
   </header>
-  <% if flash[:notice] %>
-   <p id="notice">
-   <%= flash[:notice] %>
-   </p>
-  <% end %>
 
   <main class="mb-auto">
-  <%= yield %>
+   <div class="container">
+    <% if flash[:notice] %>
+     <p id="notice">
+     <%= flash[:notice] %>
+     </p>
+    <% end %>
+
+    <%= yield %>
+   </div>
   </main>
 
-  <footer class="text-white pt-4 pb-4" style="background: #555">
+  <footer class="text-white pt-4 pb-4" style="background: #555; margin-top: 30px">
    <div class="container">
     <div class="row">
       <div class="mx-auto" style="font-size: 15px">ながのCAKE <i class="fa-solid fa-star-and-crescent"></i></div>
