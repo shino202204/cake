@@ -10,11 +10,11 @@
         <label style="margin-right: 170px">名前</label>
         <div class="field" style="margin-right: 30px">
           <%= f.label :last_name, '(姓)' %>
-          <%= f.text_field :last_name, autofocus: true %>
+          <%= f.text_field :last_name, autofocus: true, placeholder: '令和' %>
         </div>
         <div class="field">
           <%= f.label :first_name, '(名)' %>
-          <%= f.text_field :first_name %>
+          <%= f.text_field :first_name, placeholder: '道子' %>
         </div>
       </span>
 
@@ -22,32 +22,32 @@
       <label style="margin-right: 170px">フリガナ</label>
         <span class="field" style="margin-right: 30px">
           <%= f.label :last_name_kana, '(セイ)' %>
-          <%= f.text_field :last_name_kana %>
+          <%= f.text_field :last_name_kana, placeholder: 'レイワ' %>
         </span>
         <span class="field">
           <%= f.label :first_name_kana, '(メイ)' %>
-          <%= f.text_field :first_name_kana %>
+          <%= f.text_field :first_name_kana, placeholder: 'ミチコ' %>
         </span>
       </span>
 
       <div class="field">
         <%= f.label :email, 'メールアドレス', style: "padding-right: 70px" %>
-        <%= f.email_field :email, autocomplete: "email" %>
+        <%= f.email_field :email, autocomplete: "email", placeholder: 'sample@example.com' %>
       </div>
 
       <div class="field">
         <%= f.label :postal_code, '郵便番号(ハイフンなし)', style: "padding-right: 10px" %>
-        <%= f.text_field :postal_code %>
+        <%= f.text_field :postal_code, placeholder: '0000000' %>
       </div>
 
       <div class="field">
         <%= f.label :address, '住所', style: "padding-right: 150px" %>
-        <%= f.text_field :address %>
+        <%= f.text_field :address, placeholder: '東京都渋谷区代々木神園町0-0' %>
       </div>
 
       <div class="field">
         <%= f.label :telephone_number, '電話番号(ハイフンなし)', style: "padding-right: 10px" %>
-        <%= f.text_field :telephone_number %>
+        <%= f.text_field :telephone_number, placeholder: '00000000000' %>
       </div>
 
       <div class="field">
@@ -63,7 +63,7 @@
         <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
       </div>
 
-      <div class="actions" style="margin-left: 230px; margin-top: 20px">
+      <div class="actions" style="margin-left: 220px; margin-top: 20px">
         <%= f.submit "新規登録", class: "btn btn-success" %>
       </div>
     <% end %>
