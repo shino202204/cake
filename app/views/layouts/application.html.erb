@@ -14,7 +14,7 @@
   </head>
 
  <body class="d-flex flex-column vh-100">
-  <header class="shadow-sm">
+  <header class="shadow-sm" style="margin-bottom: 30px">
    <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
      <a class="navbar-brand p-3" href="/">ながのCAKE <i class="fa-solid fa-star-and-crescent"></i></a>
@@ -84,24 +84,12 @@
   <%= yield %>
   </main>
 
-  <footer class="bg-dark text-white pt-5 pb-4">
-      <div class="container">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            ながのCAKE <i class="fa-solid fa-star-and-crescent"></i>
-          </div>
-          <div class="col-md-8">
-            <ul class="p-0 list-unstyled">
-              <li>
-                <a href="" title="About" class="text-white-50">会社概要</a>
-              </li>
-              <li>
-                <a href="" title="License informations" class="text-white-50">プライバシーポリシー</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
+  <footer class="text-white pt-4 pb-4" style="background: #555">
+   <div class="container">
+    <div class="row">
+      <div class="mx-auto" style="font-size: 15px">ながのCAKE <i class="fa-solid fa-star-and-crescent"></i></div>
+    </div>
+    </div>
+  </footer>
  </body>
 </html>
