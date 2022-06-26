@@ -1,20 +1,37 @@
-<side>
-  <h3>ジャンル検索</h3>
-  <p>ケーキ</p>
-  <p>焼き菓子</p>
-  <p>プリン</p>
-  <p>キャンディ</p>
-</side>
+<div class="row">
+  <div class="col-lg-2">
+  <!--<div class="col-lg-2" style="border: 1px solid #eee">-->
+    <side>
+      <h3 style="font-size: 16px; font-weight: bold">ジャンル検索</h3>
+      <span>ケーキ</span><br>
+      <span>焼き菓子</span><br>
+      <span>プリン</span><br>
+      <span>キャンディ</span>
+    </side>
+  </div>
 
-<main>
-  <h1>ようこそ、ながのCAKEへ！</h1>
-</main>
+  <div class="col-lg-10">
+  <!--<div class="col-lg-10" style="border: 1px solid #eee">-->
+    <div class="row">
+    <div class="col-lg-10" style="border: 1px solid #eee; padding: 50px; margin-bottom: 25px">
+      <p>ようこそ、ながのCAKEへ！<br>
+        このサイトは、ケーキ販売のECサイトになります。<br>
+        会員でない方も商品の閲覧はできますが、<br>
+        購入には会員登録が必要になります。
+      </p>
+    </div>
 
-<h2>新着商品</h2>
-<% @items.each do |item| %>
-<tbody>
-  <td><%= link_to image_tag(item.get_image(100, 100)), item_path(item.id) %></td>
-  <td><%= item.name %></td>
-  <td><%= item.price %></td>
-</tbody>
-<% end %>
+    <h2 class="col-lg-10" style="font-size: 20px; font-weight: bold">新着商品</h2>
+    <div class="col-lg-12" style="display: flex; justify-content: space-between">
+    <!--<div class="col-lg-12" style="border: 1px solid #eee; display: flex; justify-content: space-between">-->
+      <% @items.each do |item| %>
+      <div>
+        <div style="height: 120px"><%= link_to image_tag(item.get_image(150, 150)), item_path(item.id) %></div>
+        <div><%= item.name %></div>
+        <div>¥<%= item.price %></div>
+      </div>
+      <% end %>
+    </div>
+    </div>
+  </div>
+</div>
