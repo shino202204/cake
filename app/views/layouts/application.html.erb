@@ -23,6 +23,11 @@
      <span class="navbar-toggler-icon"></span>
      </button>
      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <% if customer_signed_in? %>
+       <span style="padding-left: 50px">
+        〜ようこそ <span style="font-style: italic"><%= current_customer.last_name + current_customer.first_name %></span> さん〜
+       </span>
+      <% end %>
       <ul class="navbar-nav ml-auto">
 
       <% if admin_signed_in? %>
@@ -42,7 +47,6 @@
        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-dark" %>
       </li>
      <% elsif customer_signed_in? %>
-      <div>ようこそ <%= current_customer.last_name + current_customer.first_name %> さん</div>
       <li class="nav-item">
        <%= link_to "マイページ", customers_my_page_path, class: "nav-link text-dark" %>
       </li>

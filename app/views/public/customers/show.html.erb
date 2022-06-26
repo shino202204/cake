@@ -1,15 +1,64 @@
-<h1>Public::Customers#show</h1>
-<p>Find me in app/views/public/customers/show.html.erb</p>
-<h2>マイページ</h2>
+<div class="row">
+  <div class="col-sm-12 col-md-8 col-lg-12 px-5 px-sm-0">
+    <h2 style="font-size: 20px; margin-bottom: 20px;" class="col-lg-12">マイページ</h2>
 
-<h3>登録情報</h3>
-<%= link_to '編集する', '/customers/edit' %><br>
-<span>氏名：</span><span><%= @customer.last_name+''+@customer.first_name %></span><br>
-<span>カナ：</span><span><%= @customer.last_name_kana+''+@customer.first_name_kana %></span><br>
-<span>郵便番号：</span><span><%= @customer.postal_code %></span><br>
-<span>住所：</span><span><%= @customer.address %></span><br>
-<span>電話番号：</span><span><%= @customer.telephone_number %></span><br>
-<span>メールアドレス：</span><span><%= @customer.email %></span><br>
+    <div style="display: flex; margin-bottom: 20px" class="col-lg-12">
+      <div style="padding-right: 20px">
+        <h3 style="font-size: 20px; font-weight: bold">登録情報</h3>
+      </div>
+      <div>
+        <%= link_to '編集する', '/customers/edit', class: "btn btn-success" %><br>
+      </div>
+    </div>
 
-<h3>配送先</h3><span><%= link_to '一覧を見る', addresses_path, method: :get %></span>
-<h3>注文履歴</h3><span><%= link_to '一覧を見る', orders_path %></span>
+    <div class="col-lg-12">
+    <table style="border: 1px solid #ccc; width: 50%; margin-bottom: 30px">
+      <tr style="border: 1px solid #ccc">
+        <th style="border: 1px solid #ccc; font-weight: light; background: #eee">氏名</th>
+        <td><%= @customer.last_name+''+@customer.first_name %></td>
+      </tr>
+      <tr style="border: 1px solid #ccc">
+        <th style="border: 1px solid #ccc; font-weight: light; background: #eee">カナ</th>
+        <td><%= @customer.last_name_kana+''+@customer.first_name_kana %></td>
+      </tr>
+      <tr style="border: 1px solid #ccc">
+        <th style="border: 1px solid #ccc; font-weight: light; background: #eee">郵便番号</th>
+        <td><%= @customer.postal_code %></td>
+      </tr>
+      <tr style="border: 1px solid #ccc">
+        <th style="border: 1px solid #ccc; font-weight: light; background: #eee">住所</th>
+        <td><%= @customer.address %></td>
+      </tr>
+      <tr style="border: 1px solid #ccc">
+        <th style="border: 1px solid #ccc; font-weight: light; background: #eee">電話番号</th>
+        <td><%= @customer.telephone_number %></td>
+      </tr>
+      <tr style="border: 1px solid #ccc">
+        <th style="border: 1px solid #ccc; font-weight: light; background: #eee">メールアドレス</th>
+        <td><%= @customer.email %></td>
+      </tr>
+    </div>
+    </table>
+
+    <div class="row">
+    <div style="display: flex; margin-bottom: 20px" class="col-lg-12">
+      <div style="padding-right: 40px">
+        <h3 style="font-size: 20px; font-weight: bold">配送先</h3>
+      </div>
+      <div>
+        <span><%= link_to '一覧を見る', addresses_path, method: :get, class: "btn btn-primary" %></span>
+      </div>
+    </div>
+
+    <div style="display: flex" class="col-lg-12">
+      <div style="padding-right: 20px">
+        <h3 style="font-size: 20px; font-weight: bold">注文履歴</h3>
+      </div>
+      <div>
+        <span><%= link_to '一覧を見る', orders_path, class: "btn btn-primary" %></span>
+      </div>
+    </div>
+    </div>
+
+  </div>
+</div>

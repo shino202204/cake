@@ -1,65 +1,77 @@
-<h2>新規会員登録</h2>
+<div class="row">
+  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
+    <h2 style="font-size: 20px; margin-bottom: 20px;">新規会員登録</h2>
 
-<!--<= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>-->
-<%= form_with model: @customer, url: customer_registration_path do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
+    <!--<= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>-->
+    <%= form_with model: @customer, url: customer_registration_path do |f| %>
+      <%= render "public/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name, autofocus: true %>
-  </div>
+      <span style="display: flex">
+        <label style="margin-right: 170px">名前</label>
+        <div class="field" style="margin-right: 30px">
+          <%= f.label :last_name, '(姓)' %>
+          <%= f.text_field :last_name, autofocus: true %>
+        </div>
+        <div class="field">
+          <%= f.label :first_name, '(名)' %>
+          <%= f.text_field :first_name %>
+        </div>
+      </span>
 
-  <div class="field">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-  </div>
+      <span style="display: flex">
+      <label style="margin-right: 170px">フリガナ</label>
+        <span class="field" style="margin-right: 30px">
+          <%= f.label :last_name_kana, '(セイ)' %>
+          <%= f.text_field :last_name_kana %>
+        </span>
+        <span class="field">
+          <%= f.label :first_name_kana, '(メイ)' %>
+          <%= f.text_field :first_name_kana %>
+        </span>
+      </span>
 
-  <div class="field">
-    <%= f.label :last_name_kana %>
-    <%= f.text_field :last_name_kana %>
-  </div>
+      <div class="field">
+        <%= f.label :email, 'メールアドレス', style: "padding-right: 70px" %>
+        <%= f.email_field :email, autocomplete: "email" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :first_name_kana %>
-    <%= f.text_field :first_name_kana %>
-  </div>
+      <div class="field">
+        <%= f.label :postal_code, '郵便番号(ハイフンなし)', style: "padding-right: 10px" %>
+        <%= f.text_field :postal_code %>
+      </div>
 
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.email_field :email, autocomplete: "email" %>
-  </div>
+      <div class="field">
+        <%= f.label :address, '住所', style: "padding-right: 150px" %>
+        <%= f.text_field :address %>
+      </div>
 
-  <div class="field">
-    <%= f.label :postal_code %>
-    <%= f.text_field :postal_code %>
-  </div>
+      <div class="field">
+        <%= f.label :telephone_number, '電話番号(ハイフンなし)', style: "padding-right: 10px" %>
+        <%= f.text_field :telephone_number %>
+      </div>
 
-  <div class="field">
-    <%= f.label :address %>
-    <%= f.text_field :address %>
-  </div>
+      <div class="field">
+        <%= f.label :password, 'パスワード' %>
+        <% if @minimum_password_length %>
+        <em style="padding-right: 10px">(<%= @minimum_password_length %>文字以上)</em>
+        <% end %>
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :telephone_number %>
-    <%= f.text_field :telephone_number %>
-  </div>
+      <div class="field">
+        <%= f.label :password_confirmation, 'パスワード(確認用)', style: "padding-right: 40px" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <div class="actions" style="margin-left: 230px; margin-top: 20px">
+        <%= f.submit "新規登録", class: "btn btn-success" %>
+      </div>
     <% end %>
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <h2 style="font-size: 20px; margin-bottom: 20px; margin-top: 30px">既に登録済みの方</h2>
+  <!--<= render "public/shared/links" %>-->
+  <p>
+    <%= link_to 'こちら', customer_session_path %> からログインしてください。
+  </p>
   </div>
-
-  <div class="actions">
-    <%= f.submit "新規登録" %>
-  </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+</div>
