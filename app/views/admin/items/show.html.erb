@@ -1,30 +1,34 @@
-<h1>Admin::Items#show</h1>
-<p>Find me in app/views/admin/items/show.html.erb</p>
-<h1>商品詳細</h1>
-<%= image_tag(@item.get_image(100,100))%>
-<table>
-  <thead>
-    <tr>
-      <th>商品名</th>
-      <th>商品説明</th>
-      <th>ジャンル</th>
-      <th>税込価格</th>
-      <th>販売ステータス</th>
-      <!--<th rowspan="5"></th>-->
-    </tr>
-  </thead>
-  <tbody>
-    <td><%= @item.name %></td>
-    <td><%= @item.introduction %></td>
-    <td><%= @item.genre.name %></td>
-    <td><%= @item.price %></td>
+<div class="row">
+  <div class="col-lg-5 col-md-5 col-lg-5 px-5 px-sm-0">
+  <h2 style="font-size: 25px; margin-bottom: 20px;">商品詳細</h2>
+  <%= image_tag(@item.get_image(100,100))%>
+
+  <div style="margin-bottom: 10px">
+    <label style="padding-right: 60px">商品名</label>
+    <%= @item.name %>
+  </div>
+  <div style="margin-bottom: 10px">
+    <label style="padding-right: 60px">商品説明</label>
+    <%= @item.introduction %>
+  </div>
+  <div style="margin-bottom: 10px">
+    <label style="padding-right: 60px">ジャンル</label>
+    <%= @item.genre.name %>
+  <div style="margin-bottom: 10px">
+    <label style="padding-right: 60px">税込価格</label>
+    <%= @item.price %>（<%= @item.price * 1.1 %>）円
+  </div>
+  <div style="margin-bottom: 10px">
+    <label style="padding-right: 60px">販売ステータス</label>
     <% if @item.is_active == true %>
-      <td>販売中</td>
+      <span style="color: limegreen; font-weight:bold">販売中</span>
     <% else %>
-      <td>販売停止中</td>
+      <span style="color: gray">販売停止中</span>
     <% end %>
-  </tbody>
-</table>
-<p>
-  <%= link_to '編集する', edit_admin_item_path(@item.id) %>
-</p>
+  </div>
+  <p>
+    <%= link_to '編集する', edit_admin_item_path(@item.id), class: "btn btn-success" %>
+  </p>
+
+  </div>
+</div>
