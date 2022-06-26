@@ -1,7 +1,7 @@
-<h1>Admin::Items#new</h1>
-<p>Find me in app/views/admin/items/new.html.erb</p>
+<div class="row">
+  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+  <h2 style="font-size: 25px; margin-bottom: 20px;">商品新規登録</h2>
 
-<h2>商品新規登録</h2>
   <% if @item.errors.any? %>
     <%= @item.errors.count %> errors prohibited this item from being saved:
     <ul>
@@ -11,32 +11,36 @@
     </ul>
   <% end %>
     <%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
-    <div>
-      <label>商品画像</label>
+    <div style="margin-bottom: 10px">
+      <label style="padding-right: 60px">商品画像</label>
       <%= f.file_field :image, accept: "image/*" %>
     </div>
-    <div>
-      <label>商品名</label>
-      <%= f.text_field :name %>
+    <div style="margin-bottom: 10px">
+      <label style="padding-right: 75px">商品名</label>
+      <%= f.text_field :name, placeholder: '商品名' %>
     </div>
-    <div>
-      <label>商品説明</label>
-      <%= f.text_area :introduction %>
+    <div style="margin-bottom: 10px">
+      <label style="padding-right: 60px">商品説明</label>
+      <%= f.text_area :introduction, placeholder: 'ここに説明文を記述します' %>
     </div>
-    <div>
-      <label>ジャンル</label>
+    <div style="margin-bottom: 10px">
+      <label style="padding-right: 60px">ジャンル</label>
       <%= f.select :genre_id, options_from_collection_for_select(@genres, :id, :name), { include_blank: '--選択してください--'} %>
     </div>
-    <div>
-      <label>税抜価格</label>
-      <%= f.text_field :price %>
+    <div style="margin-bottom: 10px">
+      <label style="padding-right: 60px">税抜価格</label>
+      <%= f.text_field :price, placeholder: '1000' %> 円
     </div>
-    <div>
-      <label>販売ステータス</label>
-      <%= f.radio_button :is_active,true,checked: true %>販売中<%= f.radio_button :is_active, false %>販売停止中
+    <div style="margin-bottom: 10px">
+      <label style="padding-right: 10px">販売ステータス</label>
+      <%= f.radio_button :is_active,true,checked: true %>販売中
+      <%= f.radio_button :is_active, false %>販売停止中
     </div>
     <iv>
     <div>
-      <%= f.submit '新規登録' %>
+      <%= f.submit '新規登録', class: "btn btn-success" %>
     </div>
-<% end %>
+  <% end %>
+
+  </div>
+</div>
