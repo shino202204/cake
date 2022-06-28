@@ -10,16 +10,15 @@
     </side>
   </div>
 
-<h2 class="col-lg-10" style="font-size: 20px; font-weight: bold">商品一覧</h2>
-<div class="col-lg-10 ml-auto" style="display: flex; justify-content: space-between; flex-wrap: wrap">
-  <% @items.each do |item| %>
-  <div>
-    <div><%= link_to image_tag(item.get_image(150, 150)), item_path(item.id) %></div>
-    <div><%= item.name %></div>
-    <div>¥<%= item.price %></div>
+  <h2 class="col-lg-10" style="font-size: 20px; font-weight: bold">商品一覧</h2>
+  <div class="col-lg-10 ml-auto" style="display: flex; justify-content: space-between; flex-wrap: wrap">
+    <% @items.each do |item| %>
+    <div>
+      <div><%= link_to image_tag(item.get_image(150, 150)), item_path(item.id) %></div>
+      <div><%= item.name %></div>
+      <div>¥<%= item.price %></div>
+    </div>
+    <% end %>
   </div>
-  <% end %>
-</div>
-
 
 </div>

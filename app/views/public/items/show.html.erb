@@ -1,25 +1,45 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class="row">
+  <div class="col-lg-2">
+  <!--<div class="col-lg-2" style="border: 1px solid #eee">-->
+    <side>
+      <h3 style="font-size: 16px; font-weight: bold">ジャンル検索</h3>
+      <span>ケーキ</span><br>
+      <span>焼き菓子</span><br>
+      <span>プリン</span><br>
+      <span>キャンディ</span>
+    </side>
+  </div>
 
-<%= image_tag @item.get_image(100,100) %>
-<br>
-  <%= @item.name %>
-  <br>
-  <%= @item.introduction %>
-  <br>
-  <%= @item.price %>(税抜)
-  <br>
-<% if customer_signed_in? %>
-  <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
-    <%= f.hidden_field :item_id, :value => @item.id %>
-    <%= f.hidden_field :customer_id, :value => current_customer.id %>
-    <!--<= f.select :amount, [['1',1], ['2',2], ['3',3], ['4',4]], { include_blank: '--個数選択--'} %>-->
-    <%= f.select :amount, *[1..10], { include_blank: '--個数選択--'} %>
-    <%= f.submit 'カートに入れる' %>
-  <% end %>
-<% else %>
-  <br>
-  <div>会員登録するとご注文いただけます。</div>
-  <div>新規会員登録は<%= link_to 'こちら', new_customer_registration_path %></div>
-  <div><%= link_to '戻る', items_path %></div>
-<% end %>
+  <div class="col-lg-5">
+  <%= image_tag @item.get_image(300,300) %>
+  </div>
+
+  <div class="col-lg-5">
+    <div style="font-size: 20px; font-weight: bold">
+      <%= @item.name %>
+    </div>
+    <br>
+    <%= @item.introduction %>
+    <br>
+    <span style="font-size: 20px; font-weight: bold">
+    ¥<%= @item.with_tax_price %>
+    </span>(税込)
+    <br>
+    <% if customer_signed_in? %>
+      <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
+        <%= f.hidden_field :item_id, :value => @item.id %>
+        <%= f.hidden_field :customer_id, :value => current_customer.id %>
+        <!--<= f.select :amount, [['1',1], ['2',2], ['3',3], ['4',4]], { include_blank: '--個数選択--'} %>-->
+        <%= f.select :amount, *[1..10], { include_blank: '--個数選択--'} %>
+        <%= f.submit 'カートに入れる', class: "btn btn-success" %>
+      <% end %>
+    <% else %>
+      <br>
+      <div>会員登録するとご注文いただけます。</div>
+      <div>新規会員登録は<%= link_to 'こちら', new_customer_registration_path %></div>
+      <div><%= link_to '戻る', items_path %></div>
+    <% end %>
+
+  </div>
+
+</div>
