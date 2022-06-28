@@ -12,6 +12,10 @@ class Order < ApplicationRecord
     '〒' + postal_code + ' ' + address + '' + name
   end
 
+  def order_confirm
+    '〒' + postal_code + ' ' + address
+  end
+
   # 支払方法
   def return_payment_method
     result = ''
