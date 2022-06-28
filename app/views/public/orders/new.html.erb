@@ -1,42 +1,55 @@
-<h1>Public::Orders#new</h1>
-<p>Find me in app/views/public/orders/new.html.erb</p>
+<div class="row">
+  <div class="col-lg-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+  <h2 style="font-size: 25px; margin-bottom: 20px;">注文情報入力</h2>
 
-<h2>注文情報入力</h2>
 <%= form_with model: @order, url: orders_confirm_path, method: :post do |f| %>
 
-    <label>支払方法</label>
-    <div>
+    <label style="font-weight: bold">支払方法</label>
+    <div style="margin-left: 3%">
         <%= f.radio_button :payment_method, Order.payment_methods.key(0), checked: "checked" %>
         <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
     </div>
-    <div>
+    <div style="margin-left: 3%">
         <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
         <%= f.label :payment_method, Order.payment_methods_i18n[:transfer] %>
     </div>
 
-    <label>お届け先</label>
-    <div>
+    <label style="font-weight: bold">お届け先</label>
+    <div style="margin-left: 3%; margin-bottom: 15px">
         <%= f.radio_button :select_address, 0, checked: "checked" %>
         <%= f.label :select_address, 'ご自身の住所' %><br>
-        <%= @main_address %>
+        <span style="margin-left: 3%">
+            <%= @main_address %>
+        </span>
     </div>
-    <div>
+    <div style="margin-left: 3%; margin-bottom: 15px">
         <%= f.radio_button :select_address, 1 %>
         <%= f.label :select_address, '登録住所から選択' %><br>
-        <%= f.select :address_id, options_from_collection_for_select(@address, :id, :address_display) %>
+        <span style="margin-left: 3%">
+            <%= f.select :address_id, options_from_collection_for_select(@address, :id, :address_display) %>
+        </span>
     </div>
-    <div>
+    <div style="margin-left: 3%; margin-bottom: 30px">
         <%= f.radio_button :select_address, 2 %>
         <%= f.label :select_address, '新しいお届け先' %><br>
-        <%= f.label :postal_code, '郵便番号(ハイフンなし)' %>
-        <%= f.text_field :postal_code %><br>
-        <%= f.label :postal_code, '住所' %>
-        <%= f.text_field :address %><br>
-        <%= f.label :name, '宛名' %>
-        <%= f.text_field :name %>
+        <div style="margin-left: 3%">
+            <%= f.label :postal_code, '郵便番号(ハイフンなし)' %>
+            <%= f.text_field :postal_code, placeholder: '0000000' %><br>
+            <span style="padding-right: 140px">
+            <%= f.label :postal_code, '住所' %>
+            </span>
+            <%= f.text_field :address, placeholder: '東京都渋谷区代々木神園町0-0' %><br>
+            <span style="padding-right: 140px">
+            <%= f.label :name, '宛名' %>
+            </span>
+            <%= f.text_field :name, placeholder: '令和道子' %>
+        </div>
     </div>
-    <div>
-    <%= f.submit '確認画面へ進む' %>
+    <div style="margin-bottom: 30px">
+    <%= f.submit '確認画面へ進む', class: "btn btn-primary" %>
     </div>
 
 <% end %>
+
+  </div>
+</div>
