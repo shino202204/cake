@@ -1,48 +1,112 @@
-<h1>Public::Customers#edit</h1>
-<p>Find me in app/views/public/customers/edit.html.erb</p>
-<h2>会員情報編集</h2>
-<%= form_with model: @customer, url: customers_path, method: :patch do |f|%>
-<div class="field">
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name, autofocus: true %>
-</div>
-<div class="field">
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name %>
-</div>
+<div class="row">
+  <h2 style="font-size: 25px">会員情報編集</h2>
+  <div class="col-lg-12 mx-auto">
+  <!--<div class="col-lg-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">-->
+    <div style="display:flex; justify-content: space-between">
 
-<div class="field">
-  <%= f.label :last_name_kana %>
-  <%= f.text_field :last_name_kana %>
-</div>
+      <%= form_with model: @customer, url: customers_path, method: :patch do |f|%>
+      <div class="row">
+        <div class="field col-lg-3">
+          <%= f.label :last_name, '氏名' %>
+        </div>
+        <div class="field col-lg-5">
+          <%= f.text_field :last_name, autofocus: true %>
+        </div>
+        <div class="field col-lg-4">
+          <%= f.text_field :first_name %>
+        </div>
+      </div>
 
-<div class="field">
-  <%= f.label :first_name_kana %>
-  <%= f.text_field :first_name_kana %>
-</div>
+      <div class="row">
+        <div class="field col-lg-3">
+          <%= f.label :last_name_kana, 'フリガナ' %>
+        </div>
+        <div class="field col-lg-5">
+          <%= f.text_field :last_name_kana %>
+        </div>
+        <div class="field col-lg-4">
+          <%= f.text_field :first_name_kana %>
+        </div>
+      </div>
 
-<div class="field">
-  <%= f.label :postal_code %>
-  <%= f.text_field :postal_code %>
-</div>
+      <div class="row">
+        <div class="field col-lg-3">
+          <%= f.label :postal_code, '郵便番号' %>
+        </div>
+        <div class="field col-lg-5">
+          <%= f.text_field :postal_code %>
+        </div>
+      </div>
 
-<div class="field">
-  <%= f.label :address %>
-  <%= f.text_field :address %>
-</div>
+      <div class="row">
+        <div class="field col-lg-3">
+          <%= f.label :address, '住所' %>
+        </div>
+        <div class="field col-lg-5">
+          <%= f.text_field :address %>
+        </div>
+      </div>
 
-<div class="field">
-  <%= f.label :telephone_number %>
-  <%= f.text_field :telephone_number %>
-</div>
+      <div class="row">
+        <div class="field col-lg-3">
+          <%= f.label :telephone_number, '電話番号' %>
+        </div>
+        <div class="field col-lg-5">
+          <%= f.text_field :telephone_number %>
+        </div>
+      </div>
 
-<div class="field">
-  <%= f.label :email %>
-  <%= f.email_field :email, autocomplete: "email" %>
-</div>
-<div>
-  <%= f.submit '変更を保存' %>
-</div>
+      <div class="row">
+        <div class="field col-lg-3">
+          <%= f.label :email, 'メールアドレス' %>
+        </div>
+        <div class="field col-lg-5">
+          <%= f.text_field :email %>
+        </div>
+      </div>
 
-<span><%= link_to '退会する', customers_unsubscribe_path %></span>
-<% end %>
+      <!--<div style="display: flex">-->
+      <!--  <div class="field">-->
+      <!--    <= f.label :last_name_kana, 'フリガナ' %>-->
+      <!--    <= f.text_field :last_name_kana %>-->
+      <!--  </div>-->
+
+      <!--  <div class="field">-->
+      <!--    <= f.text_field :first_name_kana %>-->
+      <!--  </div>-->
+      <!--</div>-->
+
+    <!--<div class="field">-->
+    <!--  <= f.label :postal_code, '郵便番号' %>-->
+    <!--  <= f.text_field :postal_code %>-->
+    <!--</div>-->
+
+    <!--<div class="field">-->
+    <!--  <= f.label :address, '住所' %>-->
+    <!--  <= f.text_field :address %>-->
+    <!--</div>-->
+
+    <!--<div class="field">-->
+    <!--  <= f.label :telephone_number, '電話番号' %>-->
+    <!--  <= f.text_field :telephone_number %>-->
+    <!--</div>-->
+
+    <!--<div class="field">-->
+    <!--  <= f.label :email, 'メールアドレス' %>-->
+    <!--  <= f.email_field :email, autocomplete: "email" %>-->
+    <!--</div>-->
+
+      <div class="row" style="display: flex; padding-left: 130px">
+        <div class="col-lg-6">
+          <%= f.submit '編集内容を保存', class: "btn btn-success" %>
+        </div>
+        <div class="col-lg-6">
+          <%= link_to '退会する', customers_unsubscribe_path, class: "btn btn-danger" %>
+        </div>
+      </div>
+
+    <% end %>
+
+    </div>
+  </div>
+</div>
