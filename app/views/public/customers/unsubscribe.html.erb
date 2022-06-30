@@ -1,15 +1,22 @@
-<h1>Public::Customers#unsubscribe</h1>
-<p>Find me in app/views/public/customers/unsubscribe.html.erb</p>
+<div class="row">
+  <div class="col-lg-12 mx-auto" style="margin-bottom: 30px">
+    <h2 style="font-size: 20px; font-weight: bold">本当に退会しますか？</h2>
+  </div>
 
-<h2>本当に退会しますか？</h2>
+  <div class="col-lg-12 mx-auto" style="margin-bottom: 30px">
+    <p>退会すると、会員登録情報や</p>
+    <p>これまでの購入履歴が閲覧できなくなります。</p>
+    <p>退会する場合は、「退会する」をクリックしてください。</p>
+  </div>
 
-<p>退会すると、会員登録情報や</p>
-<p>これまでの購入履歴が閲覧できなくなります。</p>
-<p>退会する場合は、「退会する」をクリックしてください。</p>
+  <div class="col-lg-12 mx-auto" style="display: flex; justify-content: start">
+    <div style="margin-right: 20px">
+      <%= link_to '退会しない', customers_my_page_path, class: "btn btn-primary" %>
+    </div>
 
-<div><%= link_to '退会しない', customers_my_page_path %></div>
-
-<%= form_with url: customers_withdraw_path, method: :patch do |f|%>
-  <div><%= f.submit '退会する', data:{confirm: "本当に退会しますか？"} %></div>
-  <%= f.hidden_field :is_deleted, :value => true %>
-<% end %>
+    <%= form_with url: customers_withdraw_path, method: :patch do |f|%>
+      <div><%= f.submit '退会する', data:{confirm: "本当に退会しますか？"} , class: "btn btn-danger" %></div>
+      <%= f.hidden_field :is_deleted, :value => true %>
+    <% end %>
+  </div>
+</div>
