@@ -11,10 +11,12 @@
 
   <div class="col-lg-10">
     <h2 style="font-size: 20px; font-weight: bold">商品一覧</h2>
-    <div class="ml-auto" style="display: flex; justify-content: space-between; flex-wrap: wrap">
+    <div class="ml-auto" style="display: flex; justify-content: start; flex-wrap: wrap">
       <% @items.each do |item| %>
-      <div>
-        <div><%= link_to image_tag(item.get_image(150, 150)), item_path(item.id) %></div>
+      <div style="margin-right: 20px; margin-bottom: 20px">
+        <div style="margin-bottom: 10px">
+          <%= link_to image_tag(item.get_image(150, 150)), item_path(item.id) %>
+        </div>
         <div><%= item.name %></div>
         <div>¥<%= item.price %></div>
       </div>
