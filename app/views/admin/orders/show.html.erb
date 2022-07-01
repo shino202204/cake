@@ -1,57 +1,125 @@
 <div class="row">
-  <div class="col-lg-5">
+  <div class="col-lg-5" style="margin-bottom: 15px">
     <h2 style="font-size: 20px">注文履歴詳細</h2>
   </div>
 </div>
 
-<%= form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>
-  購入者
-  <%= @order.customer.last_name + @order.customer.first_name %>
-  <br>
-  注文日
-  <%= @order.created_at.strftime('%Y/%m/%d') %>
-  <br>
-  配送先
-  <%= @order.order_display %>
-  <br>
-  支払方法
-  <%= @order.return_payment_method %>
-  <br>
-  注文ステータス
-  <%= f.select :status, [['入金待ち',0], ['入金確認',1], ['製作中',2], ['発送準備中',3], ['発送済み',4]], { include_blank: @order.return_status } %>
-  <!--<= f.select :status, [['入金待ち',0], ['入金確認',1], ['製作中',2], ['発送準備中',3], ['発送済み',4]], { selected: @order.return_status } %>-->
-  <%= f.submit '更新' %>
-<% end %>
-
-<table>
-  <thead>
-    <td>商品名</td>
-    <td>単価（税込）</td>
-    <td>数量</td>
-    <td>小計</td>
-    <td>製作ステータス</td>
-    <td></td>
-  </thead>
-  <% @order_details.each do |order_detail| %>
-  <tbody>
-    <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f| %>
-      <td><%= order_detail.item.name %></td>
-      <td><%= order_detail.price %></td>
-      <td><%= order_detail.amount %></td>
-      <td><%= order_detail.price * order_detail.amount %></td>
-      <td>
-        <%= f.select :making_status, [['製作不可',0], ['製作待ち',1], ['製作中',2], ['製作完了',3]], { include_blank: order_detail.return_making_statuses } %>
-        <!--<= f.select :making_status, [['製作不可',0], ['製作待ち',1], ['製作中',2], ['製作完了',3]], { selected: order_detail.return_making_statuses } %>-->
-      </td>
-      <td><%= f.submit '更新' %></td>
-    <% end %>
-  </tbody>
+<div class="row" style="margin-bottom: 30px">
+  <div class="col-lg-2" style="font-weight: bold">
+    <div>購入者</div>
+    <div>注文日</div>
+    <div style="padding-bottom: 28px">配送先</div>
+    <div>支払方法</div>
+    <div>注文ステータス</div>
+  </div>
+  <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>
+  <div class="col-lg-10">
+    <div><%= @order.customer.last_name + @order.customer.first_name %></div>
+    <div><%= @order.created_at.strftime('%Y/%m/%d') %></div>
+    <div><%= @order.order_display %></div>
+    <div><%= @order.return_payment_method %></div>
+    <div style="display: flex">
+      <div style="margin-right: 20px">
+        <%= f.select :status, [['入金待ち',0], ['入金確認',1], ['製作中',2], ['発送準備中',3], ['発送済み',4]], { include_blank: @order.return_status } %>
+      </div>
+      <div>
+        <%= f.submit '更新', class: "btn btn-success" %>
+      </div>
+    </div>
+  </div>
   <% end %>
-</table>
+</div>
 
-<h3>商品合計</h3>
-<%= @order.total_payment %>
-<h3>送料</h3>
-<%= @order.shipping_cost %>
-<h3>請求金額合計</h3>
-<%= @order.total_payment + @order.shipping_cost %>
+<div class="row">
+  <div class="col-lg-8" style="margin-right: 20px">
+    <table class="table">
+      <thead style="background: #eee; font-weight: bold">
+        <td>商品名</td>
+        <td>単価（税込）</td>
+        <td>数量</td>
+        <td>小計</td>
+        <td>製作ステータス</td>
+        <td></td>
+      </thead>
+      <% @order_details.each do |order_detail| %>
+      <tbody>
+        <%= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f| %>
+          <td><%= order_detail.item.name %></td>
+          <td><%= order_detail.price %></td>
+          <td><%= order_detail.amount %></td>
+          <td><%= order_detail.price * order_detail.amount %></td>
+          <td>
+            <%= f.select :making_status, [['製作不可',0], ['製作待ち',1], ['製作中',2], ['製作完了',3]], { include_blank: order_detail.return_making_statuses } %>
+            <!--<= f.select :making_status, [['製作不可',0], ['製作待ち',1], ['製作中',2], ['製作完了',3]], { selected: order_detail.return_making_statuses } %>-->
+          </td>
+          <td><%= f.submit '更新', class: "btn btn-success" %></td>
+        <% end %>
+      </tbody>
+      <% end %>
+    </table>
+  </div>
+  <div style="padding-top: 70px; font-weight: bold">
+    <div>商品合計</div>
+    <div>送料</div>
+    <div>請求金額合計</div>
+  </div>
+  <div class="col-lg-2" style="padding-top: 70px">
+    <div><%= @order.total_payment %>円</div>
+    <div><%= @order.shipping_cost %>円</div>
+    <div style="font-weight: bold">
+      <%= @order.total_payment + @order.shipping_cost %>円
+    </div>
+  </div>
+</div>
+
+<!--<= form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>-->
+<!--  購入者-->
+<!--  <= @order.customer.last_name + @order.customer.first_name %>-->
+<!--  <br>-->
+<!--  注文日-->
+<!--  <= @order.created_at.strftime('%Y/%m/%d') %>-->
+<!--  <br>-->
+<!--  配送先-->
+<!--  <= @order.order_display %>-->
+<!--  <br>-->
+<!--  支払方法-->
+<!--  <= @order.return_payment_method %>-->
+<!--  <br>-->
+<!--  注文ステータス-->
+<!--  <= f.select :status, [['入金待ち',0], ['入金確認',1], ['製作中',2], ['発送準備中',3], ['発送済み',4]], { include_blank: @order.return_status } %>-->
+  <!--<= f.select :status, [['入金待ち',0], ['入金確認',1], ['製作中',2], ['発送準備中',3], ['発送済み',4]], { selected: @order.return_status } %>-->
+<!--  <= f.submit '更新' %>-->
+<!--< end %>-->
+
+<!--<table>-->
+<!--  <thead>-->
+<!--    <td>商品名</td>-->
+<!--    <td>単価（税込）</td>-->
+<!--    <td>数量</td>-->
+<!--    <td>小計</td>-->
+<!--    <td>製作ステータス</td>-->
+<!--    <td></td>-->
+<!--  </thead>-->
+<!--  < @order_details.each do |order_detail| %>-->
+<!--  <tbody>-->
+<!--    <= form_with model: order_detail, url: admin_order_detail_path(order_detail.id), method: :patch do |f| %>-->
+<!--      <td><= order_detail.item.name %></td>-->
+<!--      <td><= order_detail.price %></td>-->
+<!--      <td><= order_detail.amount %></td>-->
+<!--      <td><= order_detail.price * order_detail.amount %></td>-->
+<!--      <td>-->
+<!--        <= f.select :making_status, [['製作不可',0], ['製作待ち',1], ['製作中',2], ['製作完了',3]], { include_blank: order_detail.return_making_statuses } %>-->
+        <!--<= f.select :making_status, [['製作不可',0], ['製作待ち',1], ['製作中',2], ['製作完了',3]], { selected: order_detail.return_making_statuses } %>-->
+<!--      </td>-->
+<!--      <td><= f.submit '更新' %></td>-->
+<!--    < end %>-->
+<!--  </tbody>-->
+<!--  < end %>-->
+<!--</table>-->
+
+<!--<h3>商品合計</h3>-->
+<!--<= @order.total_payment %>-->
+<!--<h3>送料</h3>-->
+<!--<= @order.shipping_cost %>-->
+<!--<h3>請求金額合計</h3>-->
+<!--<= @order.total_payment + @order.shipping_cost %>-->
