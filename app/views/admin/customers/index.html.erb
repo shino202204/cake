@@ -1,6 +1,8 @@
-<h2>会員一覧</h2>
+<h2 style="font-size: 20px; font-weight: bold; margin-bottom: 30px;">
+  会員一覧
+</h2>
 <table class="table">
-  <thead>
+  <thead style="background: #eee">
     <tr>
       <th>会員ID</th>
       <th>氏名</th>
@@ -15,9 +17,9 @@
     <td><%= link_to customer.last_name+customer.first_name, admin_customer_path(customer.id)%></td>
     <td><%= customer.email %></td>
     <% if customer.is_deleted == false %>
-      <td>有効</td>
+      <td style="color: limegreen; font-weight:bold">有効</td>
     <% else %>
-      <td>退会</td>
+      <td style="color: gray">退会</td>
     <% end %>
   </tbody>
   <% end %>

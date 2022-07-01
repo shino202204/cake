@@ -1,4 +1,9 @@
-<h1>注文履歴詳細</h1>
+<div class="row">
+  <div class="col-lg-5">
+    <h2 style="font-size: 20px">注文履歴詳細</h2>
+  </div>
+</div>
+
 <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>
   購入者
   <%= @order.customer.last_name + @order.customer.first_name %>
