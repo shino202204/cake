@@ -22,6 +22,10 @@ class Admin::OrderDetailsController < ApplicationController
     if @making_status.to_i == 2
       @order_detail.update(making_status: 2)
       flash[:notice] = "製作ステータスを更新しました"
+      # 注文ステータスを製作中に更新
+      if @order.status != 2
+        @order.update(status: 2)
+      end
     end
     # 製作完了
     if @making_status.to_i == 3
